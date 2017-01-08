@@ -1,0 +1,12 @@
+lostit_lostit_homepage:
+    path:     /
+    defaults: { _controller: lostitLostitBundle:Default:index }
+    
+    
+lostit_lostit_mentions_legales:
+    path:     /mentions-legales
+    defaults: { _controller: lostitLostitBundle:Default:mentionsL }
+    
+lostit_lostit_qui_sommes_nous:
+    path:     /qui-sommes-nous
+    defaults: { _controller: lostitLostitBundle:Default:quisommesNous }
