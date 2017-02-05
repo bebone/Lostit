@@ -78,10 +78,17 @@ class Annonce
     private $serviceOT;
     
      /**
-     * @ORM\ManyToOne(targetEntity="lostit\LostitBundle\Entity\Categorie",cascade={"persist"}, inversedBy="shows")
+     * @ORM\ManyToOne(targetEntity="lostit\LostitBundle\Entity\Categorie",cascade={"persist"}, inversedBy="categorie")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="lostit\UserBundle\Entity\User",cascade={"persist"}, inversedBy="user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
 
     /**
@@ -284,5 +291,29 @@ class Annonce
     public function getDateCreation()
     {
         return $this->dateCreation;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \lostit\LostitBundle\Entity\Categorie $categorie
+     *
+     * @return Annonce
+     */
+    public function setCategorie(\lostit\LostitBundle\Entity\Categorie $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \lostit\LostitBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

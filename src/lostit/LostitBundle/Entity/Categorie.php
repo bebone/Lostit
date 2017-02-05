@@ -31,7 +31,7 @@ class Categorie
     
     /**
      * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="mpt\ShowsBundle\Entity\annonce", mappedBy="categorie", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="lostit\LostitBundle\Entity\annonce", mappedBy="categorie", cascade={"persist"})
      */
     private $annonces;
 
@@ -80,11 +80,11 @@ class Categorie
     /**
      * Add annonce
      *
-     * @param \mpt\ShowsBundle\Entity\annonce $annonce
+     * @param \lostit\lostitLostitBundle\annonce $annonce
      *
      * @return Categorie
      */
-    public function addAnnonce(\mpt\ShowsBundle\Entity\annonce $annonce)
+    public function addAnnonce(\lostit\lostitLostitBundle\annonce $annonce)
     {
         $this->annonces[] = $annonce;
 
@@ -94,9 +94,9 @@ class Categorie
     /**
      * Remove annonce
      *
-     * @param \mpt\ShowsBundle\Entity\annonce $annonce
+     * @param \lostit\lostitLostitBundle\annonce $annonce
      */
-    public function removeAnnonce(\mpt\ShowsBundle\Entity\annonce $annonce)
+    public function removeAnnonce(\lostit\lostitLostitBundle\annonce $annonce)
     {
         $this->annonces->removeElement($annonce);
     }

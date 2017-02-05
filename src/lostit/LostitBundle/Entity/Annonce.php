@@ -85,6 +85,13 @@ class Annonce
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="lostit\UserBundle\Entity\User",cascade={"persist"}, inversedBy="user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -308,5 +315,29 @@ class Annonce
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \lostit\UserBundle\Entity\User $user
+     *
+     * @return Annonce
+     */
+    public function setUser(\lostit\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \lostit\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

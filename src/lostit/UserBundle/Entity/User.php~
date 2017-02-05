@@ -70,7 +70,6 @@ class User
      */
     private $annonces;
 
-
     /**
      * Get id
      *
@@ -224,45 +223,5 @@ class User
     {
         return $this->password;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add annonce
-     *
-     * @param \lostit\LostitBundle\Entity\annonce $annonce
-     *
-     * @return User
-     */
-    public function addAnnonce(\lostit\LostitBundle\Entity\annonce $annonce)
-    {
-        $this->annonces[] = $annonce;
-
-        return $this;
-    }
-
-    /**
-     * Remove annonce
-     *
-     * @param \lostit\LostitBundle\Entity\annonce $annonce
-     */
-    public function removeAnnonce(\lostit\LostitBundle\Entity\annonce $annonce)
-    {
-        $this->annonces->removeElement($annonce);
-    }
-
-    /**
-     * Get annonces
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAnnonces()
-    {
-        return $this->annonces;
-    }
 }
+
