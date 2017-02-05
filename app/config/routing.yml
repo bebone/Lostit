@@ -1,9 +1,9 @@
 lostit_lostit:
-    resource: "@lostitLostitBundle/Resources/config/routing.yml"
+    resource: "@contribuxContribuxBundle/Resources/config/routing.yml"
     prefix:   /
 
 lostit_user:
-    resource: "@lostitUserBundle/Resources/config/routing.yml"
+    resource: "@contribuxUserBundle/Resources/config/routing.yml"
     prefix:   /
 
 fos_user_security:

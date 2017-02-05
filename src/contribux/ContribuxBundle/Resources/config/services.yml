@@ -1,0 +1,4 @@
+services:
+#    contribux_contribux.example:
+#        class: contribux\contribuxBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

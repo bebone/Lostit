@@ -1,0 +1,12 @@
+contribux_contribux_homepage:
+    path:     /
+    defaults: { _controller: contribuxContribuxBundle:Default:index }
+    
+    
+contribux_contribux_mentions_legales:
+    path:     /mentions-legales
+    defaults: { _controller: contribuxContribuxBundle:Default:mentionsL }
+    
+contribux_contribux_qui_sommes_nous:
+    path:     /qui-sommes-nous
+    defaults: { _controller: contribuxContribuxBundle:Default:quisommesNous }
