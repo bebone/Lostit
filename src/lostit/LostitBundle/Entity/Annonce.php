@@ -78,15 +78,15 @@ class Annonce
     private $serviceOT;
     
      /**
-     * @ORM\ManyToOne(targetEntity="lostit\LostitBundle\Entity\Categorie",cascade={"persist"}, inversedBy="categorie")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="lostit\LostitBundle\Entity\Categorie",cascade={"persist"}, inversedBy="annonces")
+     *
      */
     private $categorie;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="lostit\UserBundle\Entity\User",cascade={"persist"}, inversedBy="user")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="lostit\UserBundle\Entity\User", inversedBy="annonces")
+     *
      */
     private $user;
 
@@ -324,7 +324,7 @@ class Annonce
      *
      * @return Annonce
      */
-    public function setUser(\lostit\UserBundle\Entity\User $user)
+    public function setUsermap(\lostit\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 

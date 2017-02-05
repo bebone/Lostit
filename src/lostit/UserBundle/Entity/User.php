@@ -3,6 +3,8 @@
 namespace lostit\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
 
 /**
  * User
@@ -10,63 +12,54 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="lostit\UserBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codePostal", type="string", length=255)
+     * @ORM\Column(name="codePostal", type="string", length=255, nullable=true)
      */
     private $codePostal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255)
-     */
-    private $password;
 
 
     /**
      * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="lostit\LostitBundle\Entity\annonce", mappedBy="categorie", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="lostit\LostitBundle\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
 
@@ -128,6 +121,7 @@ class User
     {
         return $this->prenom;
     }
+
 
     /**
      * Set adresse
@@ -201,41 +195,20 @@ class User
         return $this->ville;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
 
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
     }
 
     /**
      * Add annonce
      *
-     * @param \lostit\LostitBundle\Entity\annonce $annonce
+     * @param \lostit\LostitBundle\Entity\Annonce $annonce
      *
      * @return User
      */
@@ -249,7 +222,7 @@ class User
     /**
      * Remove annonce
      *
-     * @param \lostit\LostitBundle\Entity\annonce $annonce
+     * @param \lostit\LostitBundle\Entity\Annonce $annonce
      */
     public function removeAnnonce(\lostit\LostitBundle\Entity\annonce $annonce)
     {
