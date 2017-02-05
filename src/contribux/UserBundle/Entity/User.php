@@ -3,6 +3,7 @@
 namespace contribux\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
 
@@ -21,40 +22,43 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
-     */
-    private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="sexe", type="string", length=1, nullable=true)
      */
-    private $prenom;
+    private $sexe;
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     * @ORM\Column(name="bio", type="text")
      */
-    private $adresse;
+    private $bio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codePostal", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ircUsername", type="string", length=255, nullable=true)
      */
-    private $codePostal;
+    private $ircUsername;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
+     * @ORM\Column(name="ircNetwork", type="string", length=255, nullable=true)
      */
-    private $ville;
+    private $ircNetwork;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disponible", type="boolean", length=255, nullable=true)
+     */
+    private $disponible;
 
 
     /**
@@ -74,134 +78,138 @@ class User extends BaseUser
         return $this->id;
     }
 
+
     /**
-     * Set nom
+     * Set ircUsername
      *
-     * @param string $nom
+     * @param string $ircUsername
      *
      * @return User
      */
-    public function setNom($nom)
+    public function setIrcUsername($ircUsername)
     {
-        $this->nom = $nom;
+        $this->ircUsername = $ircUsername;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get ircUsername
      *
      * @return string
      */
-    public function getNom()
+    public function getIrcUsername()
     {
-        return $this->nom;
+        return $this->ircUsername;
     }
 
+
     /**
-     * Set prenom
+     * Set ircNetwork
      *
-     * @param string $prenom
+     * @param string $ircNetwork
      *
      * @return User
      */
-    public function setPrenom($prenom)
+    public function setIrcNetwork($ircNetwork)
     {
-        $this->prenom = $prenom;
+        $this->ircUsername = $ircNetwork;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get ircNetwork
      *
      * @return string
      */
-    public function getPrenom()
+    public function getIrcNetwork()
     {
-        return $this->prenom;
+        return $this->ircNetwork;
     }
 
 
     /**
-     * Set adresse
+     * Set bio
      *
-     * @param string $adresse
+     * @param string $bio
      *
      * @return User
      */
-    public function setAdresse($adresse)
+    public function setBio($bio)
     {
-        $this->adresse = $adresse;
+        $this->bio = $bio;
 
         return $this;
     }
 
     /**
-     * Get adresse
+     * Get bio
      *
      * @return string
      */
-    public function getAdresse()
+    public function getBio()
     {
-        return $this->adresse;
+        return $this->bio;
     }
 
+
+
     /**
-     * Set codePostal
+     * Set disponible
      *
-     * @param string $codePostal
+     * @param boolean $disponible
      *
      * @return User
      */
-    public function setCodePostal($codePostal)
+    public function setDisponible($disponible)
     {
-        $this->codePostal = $codePostal;
+        $this->disponible = $disponible;
 
         return $this;
     }
 
     /**
-     * Get codePostal
+     * Get disponible
      *
-     * @return string
+     * @return boolean
      */
-    public function getCodePostal()
+    public function getDisponible()
     {
-        return $this->codePostal;
+        return $this->disponible;
     }
 
+
     /**
-     * Set ville
+     * Set sexe
      *
-     * @param string $ville
+     * @param string $sexe
      *
      * @return User
      */
-    public function setVille($ville)
+    public function setSexe($sexe)
     {
-        $this->ville = $ville;
+        $this->sexe = $sexe;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get sexe
      *
      * @return string
      */
-    public function getVille()
+    public function getSexe()
     {
-        return $this->ville;
+        return $this->sexe;
     }
-
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->annonces = new ArrayCollection();
         parent::__construct();
     }
 
