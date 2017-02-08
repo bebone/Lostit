@@ -67,6 +67,13 @@ class Annonce
 
 
     /**
+     * @ORM\ManyToOne(targetEntity="contribux\ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="annonces")
+     *
+     */
+    private $langage;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="pictureName", type="string", length=255, nullable=true)
@@ -253,7 +260,7 @@ class Annonce
      *
      * @return Annonce
      */
-    public function setUsermap(\contribux\UserBundle\Entity\User $user)
+    public function setUser(\contribux\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -291,5 +298,29 @@ class Annonce
     public function getPictureName()
     {
         return $this->pictureName;
+    }
+
+    /**
+     * Set langage
+     *
+     * @param \contribux\ContribuxBundle\Entity\Langage $langage
+     *
+     * @return Annonce
+     */
+    public function setLangage(\contribux\ContribuxBundle\Entity\Langage $langage = null)
+    {
+        $this->langage = $langage;
+
+        return $this;
+    }
+
+    /**
+     * Get langage
+     *
+     * @return \contribux\ContribuxBundle\Entity\Langage
+     */
+    public function getLangage()
+    {
+        return $this->langage;
     }
 }

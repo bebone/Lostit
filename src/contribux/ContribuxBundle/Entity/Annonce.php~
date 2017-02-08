@@ -1,14 +1,15 @@
 <?php
 
-namespace lostit\LostitBundle\Entity;
+namespace contribux\ContribuxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Annonce
  *
  * @ORM\Table(name="annonce")
- * @ORM\Entity(repositoryClass="lostit\LostitBundle\Repository\AnnonceRepository")
+ * @ORM\Entity(repositoryClass="contribux\ContribuxBundle\Repository\AnnonceRepository")
  */
 class Annonce
 {
@@ -38,57 +39,87 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="site", type="string", length=255)
      */
-    private $ville;
+    private $site;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="trouve", type="boolean")
-     */
-    private $trouve;
 
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="retrouve", type="boolean")
-     */
-    private $retrouve;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="recompense", type="integer")
-     */
-    private $recompense;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="serviceOT", type="boolean")
-     */
-    private $serviceOT;
     
      /**
-     * @ORM\ManyToOne(targetEntity="lostit\LostitBundle\Entity\Categorie",cascade={"persist"}, inversedBy="categorie")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="contribux\ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="annonces")
+     *
      */
     private $categorie;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="lostit\UserBundle\Entity\User",cascade={"persist"}, inversedBy="user")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="contribux\UserBundle\Entity\User", inversedBy="annonces")
+     *
      */
     private $user;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="contribux\ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="annonces")
+     *
+     */
+    private $langage;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pictureName", type="string", length=255, nullable=true)
+     */
+    private $pictureName=null;
+
+
+
+
+    /**
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 600,
+     *     minHeight = 100,
+     *     maxHeight = 600,
+     *     maxSize="2M")
+     *
+     */
+    public $file;
+
+    public function getWebPath()
+    {
+        return null === $this->pictureName ? null : $this->getUploadDir().'/'.$this->pictureName;
+    }
+
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir(); //TODO
+    }
+
+
+    protected function getUploadDir()
+    {
+        return 'uploads';
+    }
+
+    public function uploadAnnoncePicture()
+    {
+
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        $this->pictureName = "uploads/".$this->file->getClientOriginalName();
+        $this->file = null;
+    }
+
+
 
 
     /**
@@ -150,124 +181,29 @@ class Annonce
     }
 
     /**
-     * Set ville
+     * Set site
      *
-     * @param string $ville
+     * @param string $site
      *
      * @return Annonce
      */
-    public function setVille($ville)
+    public function setSite($site)
     {
-        $this->ville = $ville;
+        $this->site = $site;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get site
      *
      * @return string
      */
-    public function getVille()
+    public function getSite()
     {
-        return $this->ville;
+        return $this->site;
     }
 
-    /**
-     * Set trouve
-     *
-     * @param boolean $trouve
-     *
-     * @return Annonce
-     */
-    public function setTrouve($trouve)
-    {
-        $this->trouve = $trouve;
-
-        return $this;
-    }
-
-    /**
-     * Get trouve
-     *
-     * @return bool
-     */
-    public function getTrouve()
-    {
-        return $this->trouve;
-    }
-
-    /**
-     * Set retrouve
-     *
-     * @param boolean $retrouve
-     *
-     * @return Annonce
-     */
-    public function setRetrouve($retrouve)
-    {
-        $this->retrouve = $retrouve;
-
-        return $this;
-    }
-
-    /**
-     * Get retrouve
-     *
-     * @return bool
-     */
-    public function getRetrouve()
-    {
-        return $this->retrouve;
-    }
-
-    /**
-     * Set recompense
-     *
-     * @param integer $recompense
-     *
-     * @return Annonce
-     */
-    public function setRecompense($recompense)
-    {
-        $this->recompense = $recompense;
-
-        return $this;
-    }
-
-    /**
-     * Get recompense
-     *
-     * @return int
-     */
-    public function getRecompense()
-    {
-        return $this->recompense;
-    }
-
-    /**
-     * Set serviceOT
-     *
-     * @param boolean $serviceOT
-     *
-     * @return Annonce
-     */
-    public function setServiceOT($serviceOT)
-    {
-        $this->serviceOT = $serviceOT;
-
-        return $this;
-    }
-
-    /**
-     * Get serviceOT
-     *
-     * @return bool
-     */
-    public function getServiceOT()
-    {
-        return $this->serviceOT;
-    }
 
     /**
      * Set dateCreation
@@ -296,11 +232,11 @@ class Annonce
     /**
      * Set categorie
      *
-     * @param \lostit\LostitBundle\Entity\Categorie $categorie
+     * @param \contribux\contribuxBundle\Entity\Categorie $categorie
      *
      * @return Annonce
      */
-    public function setCategorie(\lostit\LostitBundle\Entity\Categorie $categorie)
+    public function setCategorie(\contribux\contribuxBundle\Entity\Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -310,10 +246,57 @@ class Annonce
     /**
      * Get categorie
      *
-     * @return \lostit\LostitBundle\Entity\Categorie
+     * @return \contribux\contribuxBundle\Entity\Categorie
      */
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \contribux\UserBundle\Entity\User $user
+     *
+     * @return Annonce
+     */
+    public function setUser(\contribux\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \contribux\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set pictureName
+     *
+     * @param string $pictureName
+     * @return Annonce
+     */
+    public function setPictureName($pictureName)
+    {
+        $this->pictureName = $pictureName;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureName
+     *
+     * @return string
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
     }
 }

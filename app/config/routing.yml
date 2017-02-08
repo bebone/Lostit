@@ -1,10 +1,7 @@
-lostit_lostit:
-    resource: "@contribuxContribuxBundle/Resources/config/routing.yml"
-    prefix:   /
+app:
+    resource: "@contribuxContribuxBundle/Controller/"
+    type:     annotation
 
-lostit_user:
-    resource: "@contribuxUserBundle/Resources/config/routing.yml"
-    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
