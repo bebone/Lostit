@@ -23,13 +23,6 @@ class User extends BaseUser
     protected $id;
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="sexe", type="string", length=1, nullable=true)
-     */
-    private $sexe;
-
 
     /**
      * @var string
@@ -62,10 +55,10 @@ class User extends BaseUser
 
 
     /**
-     * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Annonce", mappedBy="user")
+     * @var ArrayCollection $projets
+     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Projet", mappedBy="user")
      */
-    private $annonces;
+    private $projets;
 
 
     /**
@@ -180,69 +173,46 @@ class User extends BaseUser
     }
 
 
-    /**
-     * Set sexe
-     *
-     * @param string $sexe
-     *
-     * @return User
-     */
-    public function setSexe($sexe)
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
-    /**
-     * Get sexe
-     *
-     * @return string
-     */
-    public function getSexe()
-    {
-        return $this->sexe;
-    }
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->annonces = new ArrayCollection();
+        $this->projets = new ArrayCollection();
         parent::__construct();
     }
 
     /**
-     * Add annonce
+     * Add projet
      *
-     * @param \ContribuxBundle\Entity\Annonce $annonce
+     * @param \ContribuxBundle\Entity\Projet $projet
      *
      * @return User
      */
-    public function addAnnonce(\ContribuxBundle\Entity\annonce $annonce)
+    public function addProjet(\ContribuxBundle\Entity\Projet $projet)
     {
-        $this->annonces[] = $annonce;
+        $this->projets[] = $projet;
 
         return $this;
     }
 
     /**
-     * Remove annonce
+     * Remove projet
      *
-     * @param \ContribuxBundle\Entity\Annonce $annonce
+     * @param \ContribuxBundle\Entity\Projet $projet
      */
-    public function removeAnnonce(\ContribuxBundle\Entity\annonce $annonce)
+    public function removeProjet(\ContribuxBundle\Entity\Projet $projet)
     {
-        $this->annonces->removeElement($annonce);
+        $this->projets->removeElement($projet);
     }
 
     /**
-     * Get annonces
+     * Get projets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAnnonces()
+    public function getProjets()
     {
         return $this->annonces;
     }

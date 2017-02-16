@@ -30,10 +30,10 @@ class Langage
 
 
     /**
-     * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Annonce", mappedBy="langage", cascade={"persist"})
+     * @var ArrayCollection $projets
+     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Projet", mappedBy="langage", cascade={"persist"})
      */
-    private $annonces;
+    private $projets;
 
 
     /**
@@ -78,36 +78,36 @@ class Langage
     }
 
     /**
-     * Add annonce
+     * Add projet
      *
-     * @param \ContribuxBundle\Entity\Annonce $annonce
+     * @param \ContribuxBundle\Entity\Projet $projet
      *
      * @return Langage
      */
-    public function addAnnonce(\ContribuxBundle\Entity\Annonce $annonce)
+    public function addProjet(\ContribuxBundle\Entity\Projet $projet)
     {
-        $this->annonces[] = $annonce;
+        $this->projets[] = $projet;
 
         return $this;
     }
 
     /**
-     * Remove annonce
+     * Remove projet
      *
-     * @param \ContribuxBundle\Entity\Annonce $annonce
+     * @param \ContribuxBundle\Entity\Annonce $projet
      */
-    public function removeAnnonce(\ContribuxBundle\Entity\Annonce $annonce)
+    public function removeProjet(\ContribuxBundle\Entity\Projet $projet)
     {
-        $this->annonces->removeElement($annonce);
+        $this->projets->removeElement($projet);
     }
 
     /**
-     * Get annonces
+     * Get projets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAnnonces()
+    public function getProjets()
     {
-        return $this->annonces;
+        return $this->projets;
     }
 }

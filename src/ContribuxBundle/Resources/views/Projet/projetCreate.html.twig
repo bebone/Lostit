@@ -1,0 +1,44 @@
+{%  extends "::layout.html.twig" %}
+{%  block title %}
+    {{ parent() }}  Ajouter un projet
+    {%  endblock %}
+{%  block contenu %}
+    <div class="row content">
+
+<form action="{{ path("projet_create")}}" method="post" >
+
+
+    <div>
+        {{ form_errors(form.titre) }}
+        {{ form_label(form.titre) }}
+        {{ form_widget(form.titre) }}
+    </div>
+    <div>
+        {{ form_errors(form.description) }}
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+    </div>
+    <div>
+        {{ form_errors(form.site) }}
+        {{ form_label(form.site) }}
+        {{ form_widget(form.site) }}
+    </div>
+    <div>
+        {{ form_errors(form.categorie) }}
+        {{ form_label(form.categorie) }}
+        {{ form_widget(form.categorie) }}
+    </div>
+
+    <div>
+        {{ form_errors(form.langage) }}
+        {{ form_label(form.langage) }}
+        {{ form_widget(form.langage) }}
+    </div>
+
+
+
+    {{ form_rest(form) }}
+    <input type="submit" id="submit" value="VALIDER" name="submit" />
+</form>
+    </div>
+{% endblock %}

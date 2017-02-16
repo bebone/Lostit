@@ -31,10 +31,10 @@ class Categorie
     
     
     /**
-     * @var ArrayCollection $annonces
-     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Annonce", mappedBy="categorie", cascade={"persist"})
+     * @var ArrayCollection $projets
+     * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Projet", mappedBy="categorie", cascade={"persist"})
      */
-    private $annonces;
+    private $projets;
 
 
     /**
@@ -75,40 +75,40 @@ class Categorie
      */
     public function __construct()
     {
-        $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add annonce
+     * Add projet
      *
-     * @param \contribuxBundle\Annonce $annonce
+     * @param \contribuxBundle\Projet $projet
      *
      * @return Categorie
      */
-    public function addAnnonce(\ContribuxBundle\Annonce $annonce)
+    public function addProjet(\ContribuxBundle\Projet $projet)
     {
-        $this->annonces[] = $annonce;
+        $this->projets[] = $projet;
 
         return $this;
     }
 
     /**
-     * Remove annonce
+     * Remove projet
      *
-     * @param \ContribuxBundle\Annonce $annonce
+     * @param \ContribuxBundle\Projet $projet
      */
-    public function removeAnnonce(\ContribuxBundle\Annonce $annonce)
+    public function removeProjet(\ContribuxBundle\Projet $projet)
     {
-        $this->annonces->removeElement($annonce);
+        $this->projets->removeElement($projet);
     }
 
     /**
-     * Get annonces
+     * Get projets
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAnnonces()
+    public function getProjets()
     {
-        return $this->annonces;
+        return $this->projets;
     }
 }

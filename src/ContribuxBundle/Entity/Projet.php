@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Annonce
+ * Projet
  *
- * @ORM\Table(name="annonce")
- * @ORM\Entity(repositoryClass="ContribuxBundle\Repository\AnnonceRepository")
+ * @ORM\Table(name="projet")
+ * @ORM\Entity(repositoryClass="ContribuxBundle\Repository\ProjetRepository")
  */
-class Annonce
+class Projet
 {
     /**
      * @var int
@@ -25,9 +25,9 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $nom;
+    private $titre;
     
     /**
      * @var datetime
@@ -35,6 +35,14 @@ class Annonce
      * @ORM\Column(name="dateCreation", type="datetime")
      */
     private $dateCreation;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime")
+     */
+    private $dateModif;
 
     /**
      * @var string
@@ -82,6 +90,11 @@ class Annonce
 
 
 
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+        $this->dateModif = new \DateTime();
+    }
 
     /**
      * @Assert\Image(
@@ -210,7 +223,7 @@ class Annonce
      *
      * @param \DateTime $dateCreation
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setDateCreation($dateCreation)
     {
@@ -234,7 +247,7 @@ class Annonce
      *
      * @param \ContribuxBundle\Entity\Categorie $categorie
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setCategorie(\ContribuxBundle\Entity\Categorie $categorie)
     {
@@ -258,7 +271,7 @@ class Annonce
      *
      * @param \UserBundle\Entity\User $user
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setUser(\UserBundle\Entity\User $user)
     {
@@ -281,7 +294,7 @@ class Annonce
      * Set pictureName
      *
      * @param string $pictureName
-     * @return Annonce
+     * @return Projet
      */
     public function setPictureName($pictureName)
     {
@@ -305,7 +318,7 @@ class Annonce
      *
      * @param \ContribuxBundle\Entity\Langage $langage
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setLangage(\ContribuxBundle\Entity\Langage $langage = null)
     {
@@ -322,5 +335,53 @@ class Annonce
     public function getLangage()
     {
         return $this->langage;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Projet
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Projet
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
     }
 }
