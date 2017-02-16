@@ -68,12 +68,20 @@ swiftmailer:
     spool:     { type: memory }
 
 
+
+
 fos_user:
     db_driver: orm
     firewall_name: main
     user_class: UserBundle\Entity\User
+    registration:
+        form:
+            type: UserBundle\Form\Type\RegistrationType
     from_email:
-            address: you@example.com
-            sender_name: You
+            address: co@example.com
+            sender_name: co
+
+
+
 
 
