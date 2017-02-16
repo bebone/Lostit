@@ -7,7 +7,7 @@ security:
         main:
             id: fos_user.user_provider.username
     encoders:
-        lostit\UserBundle\Entity\User: sha512
+        contribux\UserBundle\Entity\User: sha512
 
 
     firewalls:

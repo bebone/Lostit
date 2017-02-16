@@ -115,6 +115,10 @@ h1 {
 
 }
 
+.accueil {
+    background-color: #99CDD8;
+}
+
 #titre-accueil, #boutons-accueil, #description-accueil {
   text-align: center;
 }

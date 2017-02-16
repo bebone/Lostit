@@ -1,5 +1,5 @@
 app:
-    resource: "@contribuxContribuxBundle/Controller/"
+    resource: "@ContribuxBundle/Controller/"
     type:     annotation
 
 
