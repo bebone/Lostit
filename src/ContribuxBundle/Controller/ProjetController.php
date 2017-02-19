@@ -15,6 +15,32 @@ class ProjetController extends Controller
 
     /**
      *
+     * @Route("/projets/{page}", name="projets_list")
+     *
+     */
+    public function projetsListAction($page)
+    {
+        $nbParPage =5; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $projets=$em->getRepository('ContribuxBundle:Projet')->getAllProjets($page,$nbParPage);
+
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($projets) / $nbParPage),
+            'nomRoute' => 'projets_list',
+            'paramsRoute' => array()
+        );
+
+
+
+        return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+    }
+
+
+
+    /**
+     *
      * @Route("/projet/create", name="projet_create")
      * @Secure(roles="ROLE_USER")
      *
@@ -27,7 +53,9 @@ class ProjetController extends Controller
         $form = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
         if ($form->isValid()) {
-
+            if ($form["file"]->getData() != null) {
+                $projet->uploadProjetPicture();
+            }
             $projet->setUser($user);
             $em->persist($projet);
             $em->flush();
@@ -45,14 +73,21 @@ class ProjetController extends Controller
 
     /**
      *
-     * @Route("/projet/{id}", name="projet_edit")
-     * @Secure(roles="ROLE_USER")
+     * @Route("/projet/{id}", name="projet_view")
      *
      */
-    public function projetEditAction($id)
+    public function projetViewAction($id)
     {
-        return $this->render('ContribuxBundle:Projet:projetEdit.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $projet=$em->getRepository('ContribuxBundle:Projet')->find($id);
+        return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet'=>$projet));
     }
+
+
+
+
+
+
 
 
 }

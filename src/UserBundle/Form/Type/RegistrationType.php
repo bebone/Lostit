@@ -17,8 +17,7 @@ class RegistrationType extends AbstractType
         $builder
             ->add('bio', null, array('attr' => array('class' => 'inputText')))
             ->add('ircUsername', null, array('attr' => array('class' => 'inputText')))
-            ->add('ircNetwork', null, array('attr' => array('class' => 'inputText')))
-            ->add('disponible');
+            ->add('ircNetwork', null, array('attr' => array('class' => 'inputText')));
 
 
 

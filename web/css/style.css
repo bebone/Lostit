@@ -1,4 +1,6 @@
+/* IMPORTATION FONTS GOOGUEULE*/
 @import url('https://fonts.googleapis.com/css?family=Baumans|Open+Sans:300,400');
+/*******************/
 
 
 * {
@@ -14,17 +16,16 @@ body {
 body {
   min-height: 100%;
   margin: 0;
-  padding: 0px 0px 0px 0px;
-  background-color: #F1E7D6 !important;
-  color: #545352 !important;
-  font-family: 'Open Sans' !important;
+  background-color: #F1E7D6;
+  color: #545352;
+  font-family: 'Open Sans';
 }
 
 a:hover {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
-ul {
+nav ul {
   list-style: none;
 }
 
@@ -69,10 +70,27 @@ footer {
 }
 
 
-h1 {
 
+
+.projet-liste, .projet-info {
+    background-color: #535252;
+    color:#FFF;
+    padding: 10px 10px 10px 10px;
+    margin-bottom:15px;
 }
 
+.projet-info h1 {
+    color:#E78834;
+}
+
+
+.projet-liste a, .projet-info a {
+    color:#E78834;
+}
+
+.projet-description {
+    padding-left:20px;
+}
 
 .container {
     width: 100%;
@@ -87,7 +105,6 @@ h1 {
 .content {
     min-height: 100vh;
     margin: 0;
-    /*border-style:solid;*/
 }
 
 .row {

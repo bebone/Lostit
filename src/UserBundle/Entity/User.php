@@ -46,12 +46,7 @@ class User extends BaseUser
     private $ircNetwork;
 
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="disponible", type="boolean", length=255, nullable=true)
-     */
-    private $disponible;
+
 
 
     /**
@@ -148,29 +143,6 @@ class User extends BaseUser
 
 
 
-    /**
-     * Set disponible
-     *
-     * @param boolean $disponible
-     *
-     * @return User
-     */
-    public function setDisponible($disponible)
-    {
-        $this->disponible = $disponible;
-
-        return $this;
-    }
-
-    /**
-     * Get disponible
-     *
-     * @return boolean
-     */
-    public function getDisponible()
-    {
-        return $this->disponible;
-    }
 
 
 
@@ -214,6 +186,6 @@ class User extends BaseUser
      */
     public function getProjets()
     {
-        return $this->annonces;
+        return $this->projets;
     }
 }

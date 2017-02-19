@@ -1,0 +1,41 @@
+{% extends "::layout.html.twig" %}
+{%  block scripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}
+{% block title %}
+    {{ parent() }}  Projets
+{% endblock %}
+{% block contenu %}
+
+    <div class="row content">
+
+        <h1>Liste des projets</h1>
+        {% for projet in projets %}
+            <div class="projet-liste">
+                <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.titre }}</a></h2>
+                <p>Ajouté par : {{ projet.user.username }}</p>
+                <p>Langage principal :  <button type="button" class="btn btn-default">
+                        {{ projet.langage.nom }}</button></p>
+                <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
+                <p>Site web du projet :
+                    {% if projet.site=="http://" %}
+                    <strong>non indiqué</strong></p>
+                {% else %}
+                    <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+
+
+        {#<p>Total : {{ projets.count }}</p>#}
+    </div>
+    {% include 'ContribuxBundle:Default:pagination.html.twig' %}
+
+{% endblock %}

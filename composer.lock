@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9d69a57958e9478ad62c72f2952309a4",
+    "hash": "cdc988fe18fbcd772cdbfd21a4a74a9d",
     "content-hash": "8a325d62310625164e950ae44a5c01f3",
     "packages": [
         {
@@ -782,12 +782,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "182457a595311f7a9b40ae4d83cd1141da6e6f79"
+                "reference": "2664d46f7039cbd77cbd0b6b06d782596ea69bde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/182457a595311f7a9b40ae4d83cd1141da6e6f79",
-                "reference": "182457a595311f7a9b40ae4d83cd1141da6e6f79",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/2664d46f7039cbd77cbd0b6b06d782596ea69bde",
+                "reference": "2664d46f7039cbd77cbd0b6b06d782596ea69bde",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +851,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-02-15 15:15:20"
+            "time": "2017-02-17 15:49:11"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2549,7 +2549,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",

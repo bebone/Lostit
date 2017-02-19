@@ -34,7 +34,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav navbar-right"> 
-                            <li><a href="#band">PROJETS</a></li>
+                            <li><a href="/projets/1">PROJETS</a></li>
                             <li><a href="#tour">RECHERCHER</a></li>
 
 
@@ -44,8 +44,10 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/profile">Mon profil</a></li>
-                                        <li><a href="/logout">Se déconnecter</a></li>
+                                        <li><a href="/projet/create"><span class="fa fa-plus-circle"></span> Ajouter un projet</a></li>
+                                        <li><a href="/projet/create"><span class="fa fa-list"></span> Mes projets</a></li>
+                                        <li><a href="/profile"><span class="fa fa-user"></span> Mon profil</a></li>
+                                        <li><a href="/logout"><span class="fa fa-sign-out"></span> Se déconnecter</a></li>
                                     </ul>
                                 </li>
                             {% else %}
@@ -66,15 +68,21 @@
 
         {%endblock%}
 
-        {# Contenu ###########("content" est un mot reservé -> use "contenu" instead)###########}
 
-        
+        {% for type, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                <div class="">
+                    <strong>  {{ flashMessage|trans({}, 'FOSUserBundle') }} </strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {# Contenu ###########("content" est un mot reservé -> use "contenu" instead)###########}
             {% block contenu %} 
             {%endblock%}
        
 
         {# Pied de Page #######################}
-
         <footer>
             {% block footer %}
             {%endblock%}

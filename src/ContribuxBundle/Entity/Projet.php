@@ -59,23 +59,54 @@ class Projet
     private $site;
 
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="documentation", type="boolean", length=255, nullable=true)
+     */
+    private $documentation;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="developpement", type="boolean", length=255)
+     */
+    private $developpement;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="graphisme", type="boolean", length=255)
+     */
+    private $graphisme;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="traduction", type="boolean", length=255)
+     */
+    private $traduction;
+
+
     
      /**
-     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="projets")
      *
      */
     private $categorie;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="projets")
      *
      */
     private $user;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="projets")
      *
      */
     private $langage;
@@ -94,6 +125,7 @@ class Projet
     {
         $this->dateCreation = new \DateTime();
         $this->dateModif = new \DateTime();
+        $this->site = "http://"; //on indique déjà le http
     }
 
     /**
@@ -124,7 +156,7 @@ class Projet
         return 'uploads';
     }
 
-    public function uploadAnnoncePicture()
+    public function uploadProjetPicture()
     {
 
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
@@ -150,7 +182,7 @@ class Projet
      *
      * @param string $nom
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setNom($nom)
     {
@@ -174,7 +206,7 @@ class Projet
      *
      * @param string $description
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setDescription($description)
     {
@@ -198,7 +230,7 @@ class Projet
      *
      * @param string $site
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setSite($site)
     {
@@ -383,5 +415,101 @@ class Projet
     public function getTitre()
     {
         return $this->titre;
+    }
+
+    /**
+     * Set documentation
+     *
+     * @param boolean $documentation
+     *
+     * @return Projet
+     */
+    public function setDocumentation($documentation)
+    {
+        $this->documentation = $documentation;
+
+        return $this;
+    }
+
+    /**
+     * Get documentation
+     *
+     * @return boolean
+     */
+    public function getDocumentation()
+    {
+        return $this->documentation;
+    }
+
+    /**
+     * Set developpement
+     *
+     * @param boolean $developpement
+     *
+     * @return Projet
+     */
+    public function setDeveloppement($developpement)
+    {
+        $this->developpement = $developpement;
+
+        return $this;
+    }
+
+    /**
+     * Get developpement
+     *
+     * @return boolean
+     */
+    public function getDeveloppement()
+    {
+        return $this->developpement;
+    }
+
+    /**
+     * Set graphisme
+     *
+     * @param boolean $graphisme
+     *
+     * @return Projet
+     */
+    public function setGraphisme($graphisme)
+    {
+        $this->graphisme = $graphisme;
+
+        return $this;
+    }
+
+    /**
+     * Get graphisme
+     *
+     * @return boolean
+     */
+    public function getGraphisme()
+    {
+        return $this->graphisme;
+    }
+
+    /**
+     * Set traduction
+     *
+     * @param boolean $traduction
+     *
+     * @return Projet
+     */
+    public function setTraduction($traduction)
+    {
+        $this->traduction = $traduction;
+
+        return $this;
+    }
+
+    /**
+     * Get traduction
+     *
+     * @return boolean
+     */
+    public function getTraduction()
+    {
+        return $this->traduction;
     }
 }

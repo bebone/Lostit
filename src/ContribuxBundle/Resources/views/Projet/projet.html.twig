@@ -1,0 +1,31 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} <!-- TODO -->
+{% endblock %}
+{%  block scripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}
+{% block contenu %}
+
+    <div class="row content">
+
+        <div class="projet-info">
+            <h1>{{ projet.titre }}</h1>
+
+             <div class="projet-description">{{ projet.description| raw }}</div>
+            <p>  {{ projet.categorie.nom }}</p>
+            <p>  {{ projet.langage.nom }}</p>
+            <p> {{ projet.user.username }}</p>
+            <p> {{ projet.dateCreation|date }}</p>
+            <p> {{ projet.site }}</p>
+            <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
+
+        </div>
+    </div>
+
+{% endblock %}

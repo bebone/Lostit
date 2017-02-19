@@ -1,0 +1,26 @@
+{# icones affichage des aides #}
+
+{% if projet.developpement==true %}
+    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Développement" data-original-title="Développement">
+        <span class="fa fa-desktop"></span>
+    </button>
+{% endif %}
+
+{% if projet.traduction==true %}
+    <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Traduction" data-original-title="Traduction">
+        <span class="fa fa-globe"></span>
+    </button>
+{% endif %}
+
+{% if projet.documentation==true %}
+    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Documentation" data-original-title="Documentation">
+        <span class="fa fa-book"></span>
+    </button>
+{% endif %}
+
+{% if projet.graphisme==true %}
+    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Graphisme" data-original-title="Graphisme">
+        <span class="fa fa-paint-brush"></span>
+    </button>
+{% endif %}
+

@@ -1,6 +1,6 @@
 <?php
 
-namespace contribux\ContribuxBundle\Entity;
+namespace ContribuxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Annonce
  *
  * @ORM\Table(name="annonce")
- * @ORM\Entity(repositoryClass="contribux\ContribuxBundle\Repository\AnnonceRepository")
+ * @ORM\Entity(repositoryClass="ContribuxBundle\Repository\AnnonceRepository")
  */
 class Annonce
 {
@@ -25,9 +25,9 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="titre", type="string", length=255)
      */
-    private $nom;
+    private $titre;
     
     /**
      * @var datetime
@@ -35,6 +35,14 @@ class Annonce
      * @ORM\Column(name="dateCreation", type="datetime")
      */
     private $dateCreation;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateModif", type="datetime")
+     */
+    private $dateModif;
 
     /**
      * @var string
@@ -53,21 +61,21 @@ class Annonce
 
     
      /**
-     * @ORM\ManyToOne(targetEntity="contribux\ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="annonces")
      *
      */
     private $categorie;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="contribux\UserBundle\Entity\User", inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="annonces")
      *
      */
     private $user;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="contribux\ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="annonces")
      *
      */
     private $langage;
@@ -82,6 +90,11 @@ class Annonce
 
 
 
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+        $this->dateModif = new \DateTime();
+    }
 
     /**
      * @Assert\Image(
@@ -232,11 +245,11 @@ class Annonce
     /**
      * Set categorie
      *
-     * @param \contribux\contribuxBundle\Entity\Categorie $categorie
+     * @param \ContribuxBundle\Entity\Categorie $categorie
      *
      * @return Annonce
      */
-    public function setCategorie(\contribux\contribuxBundle\Entity\Categorie $categorie)
+    public function setCategorie(\ContribuxBundle\Entity\Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -246,7 +259,7 @@ class Annonce
     /**
      * Get categorie
      *
-     * @return \contribux\contribuxBundle\Entity\Categorie
+     * @return \ContribuxBundle\Entity\Categorie
      */
     public function getCategorie()
     {
@@ -256,11 +269,11 @@ class Annonce
     /**
      * Set user
      *
-     * @param \contribux\UserBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      *
      * @return Annonce
      */
-    public function setUser(\contribux\UserBundle\Entity\User $user)
+    public function setUser(\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -270,7 +283,7 @@ class Annonce
     /**
      * Get user
      *
-     * @return \contribux\UserBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -298,5 +311,53 @@ class Annonce
     public function getPictureName()
     {
         return $this->pictureName;
+    }
+
+    /**
+     * Set langage
+     *
+     * @param \ContribuxBundle\Entity\Langage $langage
+     *
+     * @return Annonce
+     */
+    public function setLangage(\ContribuxBundle\Entity\Langage $langage = null)
+    {
+        $this->langage = $langage;
+
+        return $this;
+    }
+
+    /**
+     * Get langage
+     *
+     * @return \ContribuxBundle\Entity\Langage
+     */
+    public function getLangage()
+    {
+        return $this->langage;
+    }
+
+    /**
+     * Set dateModif
+     *
+     * @param \DateTime $dateModif
+     *
+     * @return Annonce
+     */
+    public function setDateModif($dateModif)
+    {
+        $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModif
+     *
+     * @return \DateTime
+     */
+    public function getDateModif()
+    {
+        return $this->dateModif;
     }
 }

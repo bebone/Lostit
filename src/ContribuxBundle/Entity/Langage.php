@@ -3,6 +3,7 @@
 namespace ContribuxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Langage
@@ -74,7 +75,7 @@ class Langage
      */
     public function __construct()
     {
-        $this->annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -94,7 +95,7 @@ class Langage
     /**
      * Remove projet
      *
-     * @param \ContribuxBundle\Entity\Annonce $projet
+     * @param \ContribuxBundle\Entity\Projet $projet
      */
     public function removeProjet(\ContribuxBundle\Entity\Projet $projet)
     {

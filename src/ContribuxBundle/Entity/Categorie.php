@@ -37,6 +37,16 @@ class Categorie
     private $projets;
 
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
     /**
      * Get id
      *
@@ -70,37 +80,7 @@ class Categorie
     {
         return $this->nom;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Add projet
-     *
-     * @param \contribuxBundle\Projet $projet
-     *
-     * @return Categorie
-     */
-    public function addProjet(\ContribuxBundle\Projet $projet)
-    {
-        $this->projets[] = $projet;
-
-        return $this;
-    }
-
-    /**
-     * Remove projet
-     *
-     * @param \ContribuxBundle\Projet $projet
-     */
-    public function removeProjet(\ContribuxBundle\Projet $projet)
-    {
-        $this->projets->removeElement($projet);
-    }
 
     /**
      * Get projets

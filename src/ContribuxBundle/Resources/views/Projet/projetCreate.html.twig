@@ -1,44 +1,61 @@
-{%  extends "::layout.html.twig" %}
-{%  block title %}
+{% extends "::layout.html.twig" %}
+{% block title %}
     {{ parent() }}  Ajouter un projet
-    {%  endblock %}
-{%  block contenu %}
+{% endblock %}
+{% block contenu %}
+
     <div class="row content">
 
-<form action="{{ path("projet_create")}}" method="post" >
+        <h1>Ajouter un projet sur le site</h1>
+
+        <form action="{{ path("projet_create") }}" method="post">
 
 
-    <div>
-        {{ form_errors(form.titre) }}
-        {{ form_label(form.titre) }}
-        {{ form_widget(form.titre) }}
-    </div>
-    <div>
-        {{ form_errors(form.description) }}
-        {{ form_label(form.description) }}
-        {{ form_widget(form.description) }}
-    </div>
-    <div>
-        {{ form_errors(form.site) }}
-        {{ form_label(form.site) }}
-        {{ form_widget(form.site) }}
-    </div>
-    <div>
-        {{ form_errors(form.categorie) }}
-        {{ form_label(form.categorie) }}
-        {{ form_widget(form.categorie) }}
-    </div>
+            <fieldset>
 
-    <div>
-        {{ form_errors(form.langage) }}
-        {{ form_label(form.langage) }}
-        {{ form_widget(form.langage) }}
+                <div class="form-group">
+                    {{ form_errors(form.titre) }}
+                    {{ form_label(form.titre) }}
+                    {{ form_widget(form.titre) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.description) }}
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_errors(form.file) }}
+                    {{ form_label(form.file) }}
+                    {{ form_widget(form.file) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.site) }}
+                    {{ form_label(form.site) }}
+                    {{ form_widget(form.site) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.categorie) }}
+                    {{ form_label(form.categorie) }}
+                    {{ form_widget(form.categorie) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_errors(form.langage) }}
+                    {{ form_label(form.langage) }}
+                    {{ form_widget(form.langage) }}
+                </div>
+
+
+                {{ form_rest(form) }}
+                <div class="form-group">
+                    <input type="submit" id="submit" value="VALIDER" name="submit" class="btn btn-default"/>
+                </div>
+            </fieldset>
+        </form>
     </div>
-
-
-
-    {{ form_rest(form) }}
-    <input type="submit" id="submit" value="VALIDER" name="submit" />
-</form>
-    </div>
+    <script src="{{ asset('bundles/contribux/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('projet_create[description]');
+    </script>
 {% endblock %}
