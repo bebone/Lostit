@@ -8,8 +8,8 @@
             $( document).on( "click", ".pagination li",function(e) {
                 e.preventDefault();
                 $("#target-content").html('loading...');
-                $(".pagination li").removeClass('active');
-                $(this).addClass('active');
+                //$(".pagination li").removeClass('active');
+                //$(this).addClass('active');
                 $("#target-content").load("projets_ajax/"+$(this).attr('id'));
             });
         });

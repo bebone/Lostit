@@ -35,20 +35,21 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/projets/1">PROJETS</a></li>
+                    <li><a href="/projets">PROJETS</a></li>
                     <li><a href="#tour">RECHERCHER</a></li>
 
 
                     {% if app.user %}
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ app.user.username }}
+                            <a class="dropdown-toggle connected" data-toggle="dropdown" href="#">
+                                <span class="fa fa-user"></span> {{ app.user.username }}
                                 <span class="caret"></span>
-                            </a>
+                            </a></strong>
                             <ul class="dropdown-menu">
                                 <li><a href="/projet/create"><span class="fa fa-plus-circle"></span> Ajouter un
                                         projet</a></li>
                                 <li><a href="/mesprojets/1"><span class="fa fa-list"></span> Mes projets</a></li>
-                                <li><a href="/profile"><span class="fa fa-user"></span> Mon profil</a></li>
+                                <li><a href="/profile"><span class="fa fa-user-circle"></span> Mon profil</a></li>
                                 <li><a href="/logout"><span class="fa fa-sign-out"></span> Se déconnecter</a></li>
                             </ul>
                         </li>

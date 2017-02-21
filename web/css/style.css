@@ -21,9 +21,14 @@ body {
   font-family: 'Open Sans';
 }
 
+a {
+    color: #333;
+}
+
 a:hover {
   text-decoration: none;
 }
+
 
 
 nav ul {
@@ -48,7 +53,7 @@ nav a {
 .navbar-brand {
     font-family: 'Baumans';
     font-size: 40px !important;
-    color:#e67e22 !important;
+    color:#E67E22 !important;
 }
 
 
@@ -77,16 +82,16 @@ nav a {
     background-color: #535252;
     color:#FFF;
     padding: 10px 10px 10px 10px;
-
+    box-shadow: 2px 3px 5px #000;
 }
 
 .projet-info h1 {
-    color:#E78834;
+    color:#E67E22;
 }
 
 
 .projet-liste a, .projet-info a {
-    color:#E78834;
+    color:#E67E22;
 }
 
 .projet-description {
@@ -117,6 +122,8 @@ nav a {
     height: 200px;
     width: 200px;
     float:right;
+    border-radius: 5px;
+    border: 3px solid #E67E22;
 }
 
 
@@ -124,7 +131,7 @@ nav a {
     font-weight: bold;
     padding : 10px 15px 10px 15px;
     border-radius: 50px;
-    background-color: #e67e22;
+    background-color: #E67E22;
     color: #545352;
     letter-spacing: 1px;
     font-size:1.6em;
@@ -136,7 +143,7 @@ nav a {
 
 .btn-accueil:hover {
     transition-duration: 1s;
-    background-color: #DA741A;
+    background-color: #E67E22;
     margin-top: 2px;
 
 }
@@ -145,6 +152,11 @@ nav a {
     background-color: #99CDD8;
 }
 
+.connected {
+    background-color:#E67E22;
+    font-weight:800;
+    font-size: 20px;
+}
 #titre-accueil, #boutons-accueil, #description-accueil {
   text-align: center;
 }
@@ -159,7 +171,7 @@ nav a {
 }
 
 #footer {
-    background-color: #E78834;
+    background-color: #E67E22;
 }
 
 #footer ul {
@@ -197,4 +209,11 @@ nav a {
         opacity: 1;
         -webkit-transform: translateY(0%);
     }
+}
+
+/* OVERRIDE PAGINATION DE BOOTSTRAP */
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover
+{
+    background-color:#E67E22;
+    border-color:#E67E22;
 }
