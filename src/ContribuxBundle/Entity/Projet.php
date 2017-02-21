@@ -131,9 +131,9 @@ class Projet
     /**
      * @Assert\Image(
      *     minWidth = 100,
-     *     maxWidth = 600,
+     *     maxWidth = 500,
      *     minHeight = 100,
-     *     maxHeight = 600,
+     *     maxHeight = 500,
      *     maxSize="2M")
      *
      */
@@ -147,7 +147,7 @@ class Projet
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir(); //TODO
+        return __DIR__.'/../../../web/'.$this->getUploadDir(); //TODO
     }
 
 

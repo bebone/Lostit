@@ -15,12 +15,33 @@ class ProjetController extends Controller
 
     /**
      *
-     * @Route("/projets/{page}", name="projets_list")
+     * @Route("/projets", name="projets_list")
      *
      */
-    public function projetsListAction($page)
+    public function projetsListAction()
     {
-        $nbParPage =5; //TODO (10 en dur)
+        $nbParPage =2; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $projets=$em->getRepository('ContribuxBundle:Projet')->findAll();
+
+
+        $pagination = array(
+            'page' => 1,
+            'nbPages' => ceil(count($projets) / $nbParPage),
+            'nomRoute' => 'projets_ajax',
+            'paramsRoute' => array()
+        );
+        return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('pagination'=>$pagination));
+    }
+
+    /**
+     *
+     * @Route("/projets_ajax/{page}", name="projets_ajax")
+     *
+     */
+    public function projetsAjaxAction($page) {
+
+        $nbParPage =2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $projets=$em->getRepository('ContribuxBundle:Projet')->getAllProjets($page,$nbParPage);
 
@@ -28,13 +49,38 @@ class ProjetController extends Controller
         $pagination = array(
             'page' => $page,
             'nbPages' => ceil(count($projets) / $nbParPage),
-            'nomRoute' => 'projets_list',
+            'nomRoute' => 'projets_ajax',
             'paramsRoute' => array()
         );
 
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+
+    }
 
 
-        return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+
+    /**
+     *
+     * @Route("/mesprojets/{page}", name="mes_projets")
+     * @Secure(roles="ROLE_USER")
+     *
+     */
+    public function mesProjetsListAction($page)
+    {
+        $nbParPage =2; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser(); //On récupère l'utilisateur
+        $projets=$em->getRepository('ContribuxBundle:Projet')->getMyProjets($page,$nbParPage, $user);
+
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($projets) / $nbParPage),
+            'nomRoute' => 'mes_projets',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('ContribuxBundle:Projet:MesProjetsList.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
     }
 
 

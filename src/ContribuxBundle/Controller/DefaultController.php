@@ -5,9 +5,11 @@ namespace ContribuxBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
+
 
     /**
      *
@@ -16,6 +18,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
+        /*if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+          $this->get('session')->getFlashBag()->add('info', "Vous êtes bien connecté");
+        }*/
         return $this->render('ContribuxBundle:Default:index.html.twig');
     }
 

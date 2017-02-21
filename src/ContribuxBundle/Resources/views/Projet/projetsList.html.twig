@@ -1,41 +1,26 @@
 {% extends "::layout.html.twig" %}
-{%  block scripts %}
+{% block scripts %}
     {{ parent() }}
     <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
+        $(document).ready(function () {
+            $("#target-content").load("{{ path('projets_ajax',{'page': 1}) }}");
+
+            $( document).on( "click", ".pagination li",function(e) {
+                e.preventDefault();
+                $("#target-content").html('loading...');
+                $(".pagination li").removeClass('active');
+                $(this).addClass('active');
+                $("#target-content").load("projets_ajax/"+$(this).attr('id'));
+            });
         });
     </script>
-{% endblock %}
-{% block title %}
-    {{ parent() }}  Projets
-{% endblock %}
+{%  endblock %}
 {% block contenu %}
-
     <div class="row content">
+        <div id="target-content">
+            Veuillez patienter ...
+        </div>
 
-        <h1>Liste des projets</h1>
-        {% for projet in projets %}
-            <div class="projet-liste">
-                <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.titre }}</a></h2>
-                <p>Ajouté par : {{ projet.user.username }}</p>
-                <p>Langage principal :  <button type="button" class="btn btn-default">
-                        {{ projet.langage.nom }}</button></p>
-                <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
-                <p>Site web du projet :
-                    {% if projet.site=="http://" %}
-                    <strong>non indiqué</strong></p>
-                {% else %}
-                    <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
-                {% endif %}
-            </div>
-
-        {% endfor %}
-
-
-
-        {#<p>Total : {{ projets.count }}</p>#}
     </div>
-    {% include 'ContribuxBundle:Default:pagination.html.twig' %}
 
 {% endblock %}

@@ -24,10 +24,33 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
         $query = $qb->getQuery();
 
         $firstResult = ($page - 1) * $maxPage;
-        $query->setFirstResult($firstResult)->setMaxResults($maxPage);
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
         $paginator = new Paginator($query);
 
        return $paginator;
+
+
+    }
+
+
+    public function getMyProjets($page, $maxPage, $user) {
+
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('p');
+        $qb->where('p.user = :user');
+        $qb->setParameter('user',$user);
+
+
+        $query = $qb->getQuery();
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage);
+        $paginator = new Paginator($query);
+
+        return $paginator;
 
 
     }

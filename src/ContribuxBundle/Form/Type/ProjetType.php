@@ -15,16 +15,16 @@ class ProjetType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('titre',null,array('attr'=>array('class'=>"form-control")))
-            ->add('description',null,array('attr'=>array('class'=>"form-control",'name'=>'ckeditor')))
+            ->add('titre',null,array('attr'=>array('class'=>"form-control"),'required'=>true))
+            ->add('description',null,array('attr'=>array('class'=>"form-control",'name'=>'ckeditor'),'required'=>true))
             ->add('file',null,array('attr'=>array('class'=>"form-control"),'label'=>'Image'))
             ->add('site',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Site web du projet'))
-            ->add('categorie', EntityType::class, array('class' => 'ContribuxBundle:Categorie', 'choice_label' => 'nom', 'label'=>'Catégorie','attr'=>array('class'=>"form-control"), 'placeholder' => 'Choisir...'))
-            ->add('langage', EntityType::class, array('class' => 'ContribuxBundle:Langage', 'choice_label' => 'nom', 'label'=>'Langage','attr'=>array('class'=>"form-control"), 'placeholder' => 'Choisir...'))
-            ->add('developpement',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Aide pour le développement?'))
-            ->add('traduction',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Aide pour la traduction?'))
-            ->add('documentation',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Aide pour la documentation?'))
-            ->add('graphisme',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Aide pour le graphisme?'))
+            ->add('categorie', EntityType::class, array('class' => 'ContribuxBundle:Categorie', 'choice_label' => 'nom', 'label'=>'Catégorie','attr'=>array('class'=>"form-control"), 'placeholder' => 'Choisir...', 'required'=>true))
+            ->add('langage', EntityType::class, array('class' => 'ContribuxBundle:Langage', 'choice_label' => 'nom', 'label'=>'Langage principal','attr'=>array('class'=>"form-control"), 'placeholder' => 'Choisir...', 'required'=>true))
+            ->add('developpement',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour le développement?'))
+            ->add('traduction',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour la traduction?'))
+            ->add('documentation',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour la documentation?'))
+            ->add('graphisme',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour le graphisme?'))
         ;
     }
 

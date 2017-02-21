@@ -25,6 +25,7 @@ a:hover {
   text-decoration: none;
 }
 
+
 nav ul {
   list-style: none;
 }
@@ -34,9 +35,6 @@ nav a {
 
 }
 
-footer {
-  background-color: #e67e22;
-}
 
 .navbar {
     margin-bottom: 0;
@@ -70,13 +68,16 @@ footer {
 }
 
 
-
+.row > .projet-liste {
+    padding: 10px 10px 10px 0px;
+    margin:10px 0px 0px 0px !important;
+}
 
 .projet-liste, .projet-info {
     background-color: #535252;
     color:#FFF;
     padding: 10px 10px 10px 10px;
-    margin-bottom:15px;
+
 }
 
 .projet-info h1 {
@@ -112,6 +113,11 @@ footer {
   padding:15px;
 }
 
+.projet-img {
+    height: 200px;
+    width: 200px;
+    float:right;
+}
 
 
 .btn-accueil {
@@ -152,6 +158,13 @@ footer {
   font-size: 1.5em;
 }
 
+#footer {
+    background-color: #E78834;
+}
+
+#footer ul {
+    list-style: none;
+}
 
 
 .animjs {visibility:hidden;}
