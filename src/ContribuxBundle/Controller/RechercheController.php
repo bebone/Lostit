@@ -5,6 +5,7 @@ namespace ContribuxBundle\Controller;
 use ContribuxBundle\Entity\Categorie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use ContribuxBundle\Entity\Projet;
 use Symfony\Component\HttpFoundation\Request;

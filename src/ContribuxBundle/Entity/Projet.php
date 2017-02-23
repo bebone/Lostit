@@ -90,6 +90,14 @@ class Projet
     private $traduction;
 
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tests", type="boolean", length=255)
+     */
+    private $tests;
+
+
     
      /**
      * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="projets")
@@ -511,5 +519,29 @@ class Projet
     public function getTraduction()
     {
         return $this->traduction;
+    }
+
+    /**
+     * Set tests
+     *
+     * @param boolean $tests
+     *
+     * @return Projet
+     */
+    public function setTests($tests)
+    {
+        $this->tests = $tests;
+
+        return $this;
+    }
+
+    /**
+     * Get tests
+     *
+     * @return boolean
+     */
+    public function getTests()
+    {
+        return $this->tests;
     }
 }

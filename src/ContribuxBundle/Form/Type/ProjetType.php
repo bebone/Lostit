@@ -25,6 +25,8 @@ class ProjetType extends AbstractType {
             ->add('traduction',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour la traduction?'))
             ->add('documentation',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour la documentation?'))
             ->add('graphisme',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour le graphisme?'))
+            ->add('tests',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Besoin d\'aide pour les tests?'))
+
         ;
     }
 

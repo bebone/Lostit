@@ -90,6 +90,14 @@ class Projet
     private $traduction;
 
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="tests", type="boolean", length=255)
+     */
+    private $tests;
+
+
     
      /**
      * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="projets")
@@ -131,9 +139,9 @@ class Projet
     /**
      * @Assert\Image(
      *     minWidth = 100,
-     *     maxWidth = 600,
+     *     maxWidth = 500,
      *     minHeight = 100,
-     *     maxHeight = 600,
+     *     maxHeight = 500,
      *     maxSize="2M")
      *
      */
@@ -147,7 +155,7 @@ class Projet
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir(); //TODO
+        return __DIR__.'/../../../web/'.$this->getUploadDir(); //TODO
     }
 
 
@@ -156,7 +164,7 @@ class Projet
         return 'uploads';
     }
 
-    public function uploadAnnoncePicture()
+    public function uploadProjetPicture()
     {
 
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
@@ -182,7 +190,7 @@ class Projet
      *
      * @param string $nom
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setNom($nom)
     {
@@ -206,7 +214,7 @@ class Projet
      *
      * @param string $description
      *
-     * @return Annonce
+     * @return Projet
      */
     public function setDescription($description)
     {
@@ -415,5 +423,101 @@ class Projet
     public function getTitre()
     {
         return $this->titre;
+    }
+
+    /**
+     * Set documentation
+     *
+     * @param boolean $documentation
+     *
+     * @return Projet
+     */
+    public function setDocumentation($documentation)
+    {
+        $this->documentation = $documentation;
+
+        return $this;
+    }
+
+    /**
+     * Get documentation
+     *
+     * @return boolean
+     */
+    public function getDocumentation()
+    {
+        return $this->documentation;
+    }
+
+    /**
+     * Set developpement
+     *
+     * @param boolean $developpement
+     *
+     * @return Projet
+     */
+    public function setDeveloppement($developpement)
+    {
+        $this->developpement = $developpement;
+
+        return $this;
+    }
+
+    /**
+     * Get developpement
+     *
+     * @return boolean
+     */
+    public function getDeveloppement()
+    {
+        return $this->developpement;
+    }
+
+    /**
+     * Set graphisme
+     *
+     * @param boolean $graphisme
+     *
+     * @return Projet
+     */
+    public function setGraphisme($graphisme)
+    {
+        $this->graphisme = $graphisme;
+
+        return $this;
+    }
+
+    /**
+     * Get graphisme
+     *
+     * @return boolean
+     */
+    public function getGraphisme()
+    {
+        return $this->graphisme;
+    }
+
+    /**
+     * Set traduction
+     *
+     * @param boolean $traduction
+     *
+     * @return Projet
+     */
+    public function setTraduction($traduction)
+    {
+        $this->traduction = $traduction;
+
+        return $this;
+    }
+
+    /**
+     * Get traduction
+     *
+     * @return boolean
+     */
+    public function getTraduction()
+    {
+        return $this->traduction;
     }
 }
