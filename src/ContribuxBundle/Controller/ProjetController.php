@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use ContribuxBundle\Entity\Projet;
+use ContribuxBundle\Entity\Categorie;
 use Symfony\Component\HttpFoundation\Request;
 use ContribuxBundle\Form\Type\ProjetType;
 
@@ -20,18 +21,10 @@ class ProjetController extends Controller
      */
     public function projetsListAction()
     {
-        $nbParPage =2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
-        $projets=$em->getRepository('ContribuxBundle:Projet')->findAll();
-
-
-        $pagination = array(
-            'page' => 1,
-            'nbPages' => ceil(count($projets) / $nbParPage),
-            'nomRoute' => 'projets_ajax',
-            'paramsRoute' => array()
-        );
-        return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('pagination'=>$pagination));
+        $langages=$em->getRepository('ContribuxBundle:Langage')->findAll();
+        $categories=$em->getRepository('ContribuxBundle:Categorie')->findAll();
+        return $this->render('ContribuxBundle:Projet:projetsList.html.twig',array('categories'=>$categories));
     }
 
     /**

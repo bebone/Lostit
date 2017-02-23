@@ -1,8 +1,10 @@
 <?php
 
 namespace ContribuxBundle\Repository;
+
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 //use Doctrine\ORM\EntityRepository;
 
 /**
@@ -14,7 +16,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class ProjetRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getAllProjets($page, $maxPage) {
+    public function getAllProjets($page, $maxPage)
+    {
 
         if ($page < 1) {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
@@ -27,13 +30,58 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
         $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
         $paginator = new Paginator($query);
 
-       return $paginator;
+        return $paginator;
 
 
     }
 
 
-    public function getMyProjets($page, $maxPage, $user) {
+    public function getCategorieProjets($id, $page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            //->leftJoin('p.categorie', 'c')
+            ->andWhere('p.categorie= :id')
+            ->setParameter('id', $id);
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
+
+
+    public function getAideProjets($type, $page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            //->leftJoin('p.categorie', 'c')
+            ->andWhere('p.'.$type.'= TRUE');
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
+
+
+
+    public function getMyProjets($page, $maxPage, $user)
+    {
 
         if ($page < 1) {
             throw new NotFoundHttpException('La page demandée n\'existe pas');
@@ -41,7 +89,7 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('p');
         $qb->where('p.user = :user');
-        $qb->setParameter('user',$user);
+        $qb->setParameter('user', $user);
 
 
         $query = $qb->getQuery();

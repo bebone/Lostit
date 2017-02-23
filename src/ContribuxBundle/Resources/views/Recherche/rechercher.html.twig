@@ -1,0 +1,33 @@
+{% extends "::layout.html.twig" %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".pagination li", function (e) {
+                e.preventDefault();
+                $("#target-content").html('loading...');
+                $("#target-content").load("projets_ajax/" + $(this).attr('id'));
+            });
+        });
+    </script>
+{% endblock %}
+{% block contenu %}
+    <div class="row content">
+        <h1>Rechercher un projet</h1>
+        {# Catégorie dans un select !#}
+
+        <div class="form-group">
+            Par son nom :
+            <input class="form-control" type="text"/>
+
+            Par son langage de programmation :
+
+        </div>
+        <div id="target-content">
+            Veuillez patienter ...
+        </div>
+
+    </div>
+
+{% endblock %}

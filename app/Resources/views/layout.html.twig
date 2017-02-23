@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/projets">PROJETS</a></li>
-                    <li><a href="#tour">RECHERCHER</a></li>
+                    <li><a href="/rechercher">RECHERCHER</a></li>
 
 
                     {% if app.user %}
@@ -44,7 +44,7 @@
                             <a class="dropdown-toggle connected" data-toggle="dropdown" href="#">
                                 <span class="fa fa-user"></span> {{ app.user.username }}
                                 <span class="caret"></span>
-                            </a></strong>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/projet/create"><span class="fa fa-plus-circle"></span> Ajouter un
                                         projet</a></li>
@@ -110,6 +110,7 @@
         {% endblock %}
     </div>
 </footer>
+
 </body>
 </html>
 

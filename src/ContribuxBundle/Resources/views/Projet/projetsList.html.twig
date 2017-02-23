@@ -1,22 +1,47 @@
 {% extends "::layout.html.twig" %}
 {% block scripts %}
     {{ parent() }}
-    <script>
-        $(document).ready(function () {
-            $("#target-content").load("{{ path('projets_ajax',{'page': 1}) }}");
-
-            $( document).on( "click", ".pagination li",function(e) {
-                e.preventDefault();
-                $("#target-content").html('loading...');
-                //$(".pagination li").removeClass('active');
-                //$(this).addClass('active');
-                $("#target-content").load("projets_ajax/"+$(this).attr('id'));
-            });
-        });
-    </script>
-{%  endblock %}
+    {% include 'ContribuxBundle:Recherche:filtre.html.twig' %}
+{% endblock %}
 {% block contenu %}
     <div class="row content">
+        <h1>Liste des projets</h1>
+        Par catégorie :
+        <p>
+            <button type="button" class="btn btn-info active btn-all">Toutes</button>
+            {% for categorie in categories %}
+
+                <button type="button" id="{{ categorie.id }}"
+                        class="btn btn-info btn-categorie">{{ categorie.nom }}</button>
+            {% endfor %}
+        </p>
+        Aide nécessaire :
+        <p>
+            <button type="button" class="btn btn-info active btn-all">Toutes</button>
+
+            <button type="button" class="btn btn-primary btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Développement" data-original-title="Développement" id="developpement">
+                <span class="fa fa-desktop"></span>
+            </button>
+
+
+            <button type="button" class="btn btn-info btn-aide" data-toggle="tooltip" data-placement="bottom" title="Traduction"
+                    data-original-title="Traduction" id="traduction">
+                <span class="fa fa-globe"></span>
+            </button>
+
+            <button type="button" class="btn btn-warning btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Documentation" data-original-title="Documentation" id="documentation">
+                <span class="fa fa-book"></span>
+            </button>
+
+
+            <button type="button" class="btn btn-success btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Graphisme" data-original-title="Graphisme" id="graphisme">
+                <span class="fa fa-paint-brush"></span>
+            </button>
+
+        </p>
         <div id="target-content">
             Veuillez patienter ...
         </div>
