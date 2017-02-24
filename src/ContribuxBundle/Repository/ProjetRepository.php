@@ -66,7 +66,7 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('p')
             //->leftJoin('p.categorie', 'c')
-            ->andWhere('p.'.$type.'= TRUE');
+            ->andWhere('p.' . $type . '= TRUE');
         $query = $qb->getQuery();
 
 
@@ -78,6 +78,51 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+
+    public function getNomProjets($nom, $page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            //->leftJoin('p.categorie', 'c')
+            ->andWhere('p.titre LIKE :nom')
+            ->setParameter('nom', $nom . '%');
+
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
+
+
+    public function getLangageProjets($id, $page, $maxPage)
+    {
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
+
+        $qb = $this->createQueryBuilder('p')
+            //->leftJoin('p.categorie', 'c')
+            ->andWhere('p.langage = :id')
+            ->setParameter('id', $id . '%');
+
+        $query = $qb->getQuery();
+
+
+        $firstResult = ($page - 1) * $maxPage;
+        $query->setFirstResult($firstResult)->setMaxResults($maxPage); //renvoie suelement les résultats souhaités
+        $paginator = new Paginator($query);
+
+        return $paginator;
+
+    }
 
 
     public function getMyProjets($page, $maxPage, $user)

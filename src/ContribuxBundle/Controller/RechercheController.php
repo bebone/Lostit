@@ -21,8 +21,9 @@ class RechercheController extends Controller
      */
     public function rechercheAction()
     {
-
-        return $this->render('ContribuxBundle:Recherche:rechercher.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $langages=$em->getRepository('ContribuxBundle:Langage')->findAll();
+        return $this->render('ContribuxBundle:Recherche:rechercher.html.twig',array('langages'=>$langages));
     }
 
     /**
@@ -35,7 +36,6 @@ class RechercheController extends Controller
         $nbParPage =2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $projets=$em->getRepository('ContribuxBundle:Projet')->getCategorieProjets($id, $page,$nbParPage);
-
 
 
         $pagination = array(
@@ -60,6 +60,53 @@ class RechercheController extends Controller
         $em = $this->getDoctrine()->getManager();
         $projets=$em->getRepository('ContribuxBundle:Projet')->getAideProjets($type, $page,$nbParPage);
 
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($projets) / $nbParPage),
+            'nomRoute' => 'projets_ajax',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+
+    }
+
+
+    /**
+     *
+     * @Route("/recherche_nom_ajax/{nom}/{page}", name="recherche_nom_ajax")
+     *
+     */
+    public function rechercheNomAjaxAction($nom, $page) {
+
+        $nbParPage =2; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $projets=$em->getRepository('ContribuxBundle:Projet')->getNomProjets($nom, $page,$nbParPage);
+
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($projets) / $nbParPage),
+            'nomRoute' => 'projets_ajax',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+
+    }
+
+
+    /**
+     *
+     * @Route("/recherche_langage_ajax/{id}/{page}", name="recherche_langage_ajax")
+     *
+     */
+    public function rechercheLangageAjaxAction($id, $page) {
+
+        $nbParPage =2; //TODO (10 en dur)
+        $em = $this->getDoctrine()->getManager();
+        $projets=$em->getRepository('ContribuxBundle:Projet')->getLangageProjets($id, $page,$nbParPage);
 
 
         $pagination = array(
