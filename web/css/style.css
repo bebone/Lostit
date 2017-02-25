@@ -78,19 +78,23 @@ nav a {
     margin:10px 0px 0px 0px !important;
 }
 
-.projet-liste, .projet-info {
+.projet-liste, .projet-info, .user-info {
     background-color: #535252;
     color:#FFF;
     padding: 10px 10px 10px 10px;
     box-shadow: 2px 3px 5px #000;
 }
 
-.projet-info h1 {
+.projet-info h1, .user-info h1 {
     color:#E67E22;
 }
 
+.user-info h2 {
+    border-bottom: solid 1px;
+}
 
-.projet-liste a, .projet-info a {
+
+.projet-liste a, .projet-info a, .user-info a {
     color:#E67E22;
 }
 

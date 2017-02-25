@@ -16,6 +16,7 @@ class RegistrationType extends AbstractType
         parent::buildForm($builder, $options);
         $builder
             ->add('bio', null, array('attr' => array('class' => 'inputText')))
+            ->add('site', null, array('attr' => array('class' => 'inputText')))
             ->add('ircUsername', null, array('attr' => array('class' => 'inputText')))
             ->add('ircNetwork', null, array('attr' => array('class' => 'inputText')));
 

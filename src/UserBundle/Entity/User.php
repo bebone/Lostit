@@ -46,6 +46,14 @@ class User extends BaseUser
     private $ircNetwork;
 
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="site", type="string", length=255, nullable=true)
+     */
+    private $site;
+
+
 
 
 
@@ -187,5 +195,29 @@ class User extends BaseUser
     public function getProjets()
     {
         return $this->projets;
+    }
+
+    /**
+     * Set site
+     *
+     * @param string $site
+     *
+     * @return User
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return string
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }

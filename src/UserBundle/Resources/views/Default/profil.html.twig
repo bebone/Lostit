@@ -1,0 +1,42 @@
+{% extends "::layout.html.twig" %}
+
+{% block contenu %}
+    <div class="row content">
+        <div class="user-info">
+            <h1>{{ user.username }}</h1>
+            <h2> Bio</h2>
+            {{ user.bio }}
+            <h2>IRC</h2>
+            <p>Serveur :
+            {%  if user.ircNetwork is empty %}
+                Aucun</p>
+                {% else %}
+            {{ user.ircNetwork }}</p>
+                    {% endif %}
+            <p>Pseudo :
+            {%  if user.ircUsername is empty %}
+                Aucun</p>
+            {% else %}
+            {{ user.ircUsername }} </p>
+            {% endif %}
+            <h2>Site web</h2>
+            {%  if user.site is empty %}
+                Aucun
+                {%  else %}
+                {{ user.site }}
+            {% endif %}
+            {{ user.site }}
+            <h2>Projets ajoutés sur le site</h2>
+            {%  if projets is empty %}
+                <p>Aucun projet aujouté</p>
+                {% else %}
+            {%  for projet in projets %}
+           <h3> <a href="/projet/{{ projet.id }}">{{ projet.titre }}</a></h3>
+                <p>Aujouté le {{ projet.dateCreation | date("m/d/Y à H:i") }} </p>
+
+                {%  endfor %}
+                    {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
