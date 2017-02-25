@@ -155,7 +155,7 @@ class Projet
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../web/'.$this->getUploadDir(); //TODO
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
     }
 
 

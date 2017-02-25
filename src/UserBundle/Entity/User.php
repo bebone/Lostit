@@ -109,7 +109,7 @@ class User extends BaseUser
      */
     public function setIrcNetwork($ircNetwork)
     {
-        $this->ircUsername = $ircNetwork;
+        $this->ircNetwork = $ircNetwork;
 
         return $this;
     }
