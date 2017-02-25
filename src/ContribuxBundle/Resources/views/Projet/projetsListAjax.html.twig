@@ -7,7 +7,8 @@
             <div class="col-md-12">
                 <div class="col-md-8">
                     <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.titre }}</a></h2>
-                    <p>Ajouté par : {{ projet.user.username }}</p>
+                    <p>Ajouté par : <a href="/profile/{{ projet.user.username }}">{{ projet.user.username }}</a>
+                        - le  {{ projet.dateCreation | date("d/m/Y à H:i") }}</p>
                     <p>Langage principal :
                         <button type="button" class="btn btn-default">
                             {{ projet.langage.nom }}</button>
