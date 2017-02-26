@@ -160,6 +160,7 @@ class User extends BaseUser
     public function __construct()
     {
         $this->projets = new ArrayCollection();
+        $this->site="http://";
         parent::__construct();
     }
 

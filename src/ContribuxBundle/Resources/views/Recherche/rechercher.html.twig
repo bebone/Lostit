@@ -17,11 +17,13 @@
                 $("#target-content").html('Patientez...');
                 if ($('input[id="recherche-nom"]').val() == "") {
                     url = "projets_ajax/";
-                    $("#target-content").load(url + "1", function(){}).hide().fadeIn("slow");
+                    $("#target-content").load(url + "1", function () {
+                    }).hide().fadeIn("slow");
                 }
                 else {
                     url = "recherche_nom_ajax/" + $('input[id="recherche-nom"]').val() + "/";
-                    $("#target-content").load(url + "1", function(){}).hide().fadeIn("slow");
+                    $("#target-content").load(url + "1", function () {
+                    }).hide().fadeIn("slow");
                 }
             });
             $(document).keypress(function (e) {
@@ -31,11 +33,13 @@
                     $("#target-content").html('Patientez...');
                     if ($('input[id="recherche-nom"]').val() == "") {
                         url = "projets_ajax/";
-                        $("#target-content").load(url + "1", function(){}).hide().fadeIn("slow");
+                        $("#target-content").load(url + "1", function () {
+                        }).hide().fadeIn("slow");
                     }
                     else {
                         url = "recherche_nom_ajax/" + $('input[id="recherche-nom"]').val() + "/";
-                        $("#target-content").load(url + "1", function(){}).hide().fadeIn("slow");
+                        $("#target-content").load(url + "1", function () {
+                        }).hide().fadeIn("slow");
                     }
                 }
             });
@@ -45,7 +49,8 @@
                 $("#target-content").html('Patientez...');
 
                 url = "recherche_langage_ajax/" + $(this).attr('id') + "/";
-                $("#target-content").load(url + "1", function(){}).hide().fadeIn("slow");
+                $("#target-content").load(url + "1", function () {
+                }).hide().fadeIn("slow");
 
             });
 
@@ -56,16 +61,18 @@
     <div class="row content">
         <h1>Rechercher un projet</h1>
         {# Catégorie dans un select !#}
-
-        <div class="form-group">
-            Par son nom :
-            <input id="recherche-nom" class="form-control" type="text"/>
+        <div class="row">
+            <div class="col-md-6">
+                Par son nom :
+            <div class="input-group">
+                <input type="text" id="recherche-nom" class="form-control" placeholder="Saisir ici...">
+                <span class="input-group-btn">
+        <button class="btn btn-default btn-nom" type="button">Rechercher !</button>
+      </span>
+            </div>
         </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-default btn-nom" data-toggle="tooltip">
-                Rechercher
-            </button>
         </div>
+        <div class="row">
         <div class="form-group">
             Par son langage de programmation :
             <select class="form-control">
@@ -75,13 +82,13 @@
             </select>
         </div>
 
-
         <div id="target-content">
             Choisissez votre méthode de recherche.
             Les résultats vont apparaître ici.
 
         </div>
 
+    </div>
     </div>
 
 {% endblock %}

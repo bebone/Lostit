@@ -20,10 +20,10 @@
             {{ user.ircUsername }} </p>
             {% endif %}
             <h2>Site web</h2>
-            {%  if user.site is empty %}
+            {%  if user.site == "http://" %}
                 Aucun
                 {%  else %}
-                {{ user.site }}
+                <a href="{{ user.site }}">{{ user.site }}</a>
             {% endif %}
             {{ user.site }}
             <h2>Projets ajoutés sur le site</h2>

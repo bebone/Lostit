@@ -22,7 +22,6 @@ class ProjetController extends Controller
     public function projetsListAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $langages=$em->getRepository('ContribuxBundle:Langage')->findAll();
         $categories=$em->getRepository('ContribuxBundle:Categorie')->findAll();
         return $this->render('ContribuxBundle:Projet:projetsList.html.twig',array('categories'=>$categories));
     }
@@ -54,11 +53,24 @@ class ProjetController extends Controller
 
     /**
      *
-     * @Route("/mesprojets/{page}", name="mes_projets")
+     * @Route("/mes-projets", name="mes_projets_list")
+     *
+     */
+    public function mesProjetsListAction()
+    {
+
+        return $this->render('ContribuxBundle:Projet:mesProjetsList.html.twig');
+    }
+
+
+
+    /**
+     *
+     * @Route("/mes-projets_ajax/{page}", name="mes_projets_ajax")
      * @Secure(roles="ROLE_USER")
      *
      */
-    public function mesProjetsListAction($page)
+    public function mesProjetsAjaxAction($page)
     {
         $nbParPage =2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
@@ -73,7 +85,7 @@ class ProjetController extends Controller
             'paramsRoute' => array()
         );
 
-        return $this->render('ContribuxBundle:Projet:MesProjetsList.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
     }
 
 

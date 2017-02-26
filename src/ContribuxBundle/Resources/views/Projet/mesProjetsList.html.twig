@@ -1,0 +1,41 @@
+{% extends "::layout.html.twig" %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+
+            var url = "mes-projets_ajax/";
+            $("#target-content").load("{{ path('mes_projets_ajax',{'page': 1}) }}", function () {
+            }).hide().fadeIn("slow");
+
+            $(document).on("click", ".pagination li", function (e) {
+                e.preventDefault();
+                $("#target-content").html('Patientez...');
+                //$(".pagination li").removeClass('active');
+                //$(this).addClass('active');
+                $("#target-content").load(url + $(this).attr('id'), function () {
+                }).hide().fadeIn("slow");
+            });
+        });
+    </script>
+{% endblock %}
+{% block title %}
+    {{ parent() }}  Mes Projets
+{% endblock %}
+{% block contenu %}
+
+    <div class="row content">
+
+        <h1>Mes projets</h1>
+        <div id="target-content">
+            Veuillez patienter ...
+        </div>
+
+
+        {#<p>Total : {{ projets.count }}</p>#}
+    </div>
+
+
+{% endblock %}
