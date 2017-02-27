@@ -21,7 +21,15 @@
                         <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
                     {% endif %}
                     <p> Catégorie : <strong>{{ projet.categorie.nom }}</strong></p>
+                    {% if projet.user == app.user %}
 
+                    <button type="button" class="btn btn-danger btn-suppr" id="">
+                        <span class="fa fa-trash"></span> Supprimer</button>
+
+                        <a href="{{ path("projet_edit",{'id': projet.id}) }}"><button type="button" class="btn btn-info btn-modif" id="">
+                            <span class="fa fa-pencil"></span> Modifier</button></a>
+
+                    {% endif %}
                 </div>
                 <div class="col-md-3">
                     <img class="projet-img" src="{{ asset(projet.pictureName) }}">
@@ -33,8 +41,6 @@
     {% include 'ContribuxBundle:Default:pagination.html.twig' %}
 {% endif %}
 
-
-        {#<p>Total : {{ projets.count }}</p>#}
 
 
 

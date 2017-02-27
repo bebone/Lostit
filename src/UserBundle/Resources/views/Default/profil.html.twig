@@ -4,38 +4,43 @@
     <div class="row content">
         <div class="user-info">
             <h1>{{ user.username }}</h1>
+            {% if user == app.user %}
+                <button type="button" class="btn btn-info btn-modif" id="">
+                    <span class="fa fa-pencil"></span> Modifier
+                </button>
+            {% endif %}
             <h2> Bio</h2>
             {{ user.bio }}
             <h2>IRC</h2>
             <p>Serveur :
-            {%  if user.ircNetwork is empty %}
+                {% if user.ircNetwork is empty %}
                 Aucun</p>
-                {% else %}
+        {% else %}
             {{ user.ircNetwork }}</p>
-                    {% endif %}
+            {% endif %}
             <p>Pseudo :
-            {%  if user.ircUsername is empty %}
+                {% if user.ircUsername is empty %}
                 Aucun</p>
-            {% else %}
+        {% else %}
             {{ user.ircUsername }} </p>
             {% endif %}
             <h2>Site web</h2>
-            {%  if user.site == "http://" %}
+            {% if user.site == "http://" %}
                 Aucun
-                {%  else %}
+            {% else %}
                 <a href="{{ user.site }}">{{ user.site }}</a>
             {% endif %}
             {{ user.site }}
-            <h2>Projets ajoutés sur le site</h2>
-            {%  if projets is empty %}
+            <h2><strong>{{ projets|length }}</strong> Projets ajoutés sur le site </h2>
+            {% if projets is empty %}
                 <p>Aucun projet aujouté</p>
-                {% else %}
-            {%  for projet in projets %} {#TODO liste la globalité des projets sur la page #}
-           <h3> <a href="/projet/{{ projet.id }}">{{ projet.titre }}</a></h3>
-                <p>Aujouté le {{ projet.dateCreation | date("d/m/Y à H:i") }} </p>
+            {% else %}
+                {% for projet in projets %} {#TODO liste la globalité des projets sur la page #}
+                    <h3><a href="/projet/{{ projet.id }}">{{ projet.titre }}</a></h3>
+                    <p>Aujouté le {{ projet.dateCreation | date("d/m/Y à H:i") }} </p>
 
-                {%  endfor %}
-                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 

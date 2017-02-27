@@ -22,20 +22,35 @@ class ProjetController extends Controller
     public function projetsListAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $categories=$em->getRepository('ContribuxBundle:Categorie')->findAll();
-        return $this->render('ContribuxBundle:Projet:projetsList.html.twig',array('categories'=>$categories));
+        $categories = $em->getRepository('ContribuxBundle:Categorie')->findAll();
+        return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('categories' => $categories));
     }
+
+
+    /**
+     *
+     * @Route("/projet/{id}", name="projet_view")
+     *
+     */
+    public function projetViewAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projet = $em->getRepository('ContribuxBundle:Projet')->find($id);
+        return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet' => $projet));
+    }
+
 
     /**
      *
      * @Route("/projets_ajax/{page}", name="projets_ajax")
      *
      */
-    public function projetsAjaxAction($page) {
+    public function projetsAjaxAction($page)
+    {
 
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage = 2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
-        $projets=$em->getRepository('ContribuxBundle:Projet')->getAllProjets($page,$nbParPage);
+        $projets = $em->getRepository('ContribuxBundle:Projet')->getAllProjets($page, $nbParPage);
 
 
         $pagination = array(
@@ -45,10 +60,9 @@ class ProjetController extends Controller
             'paramsRoute' => array()
         );
 
-        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets' => $projets, 'pagination' => $pagination));
 
     }
-
 
 
     /**
@@ -63,7 +77,6 @@ class ProjetController extends Controller
     }
 
 
-
     /**
      *
      * @Route("/mes-projets_ajax/{page}", name="mes_projets_ajax")
@@ -72,10 +85,10 @@ class ProjetController extends Controller
      */
     public function mesProjetsAjaxAction($page)
     {
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage = 2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser(); //On récupère l'utilisateur
-        $projets=$em->getRepository('ContribuxBundle:Projet')->getMyProjets($page,$nbParPage, $user);
+        $projets = $em->getRepository('ContribuxBundle:Projet')->getMyProjets($page, $nbParPage, $user);
 
 
         $pagination = array(
@@ -85,9 +98,8 @@ class ProjetController extends Controller
             'paramsRoute' => array()
         );
 
-        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets'=>$projets, 'pagination'=>$pagination));
+        return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets' => $projets, 'pagination' => $pagination));
     }
-
 
 
     /**
@@ -116,7 +128,9 @@ class ProjetController extends Controller
 
         return $this->render('ContribuxBundle:Projet:projetCreate.html.twig', array(
             'entity' => $projet,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'action' => 'Ajouter',
+            'route'=>'projet_create'
         ));
 
     }
@@ -124,21 +138,41 @@ class ProjetController extends Controller
 
     /**
      *
-     * @Route("/projet/{id}", name="projet_view")
+     * @Route("/projet/{id}/edit", name="projet_edit")
+     * @Secure(roles="ROLE_USER")
      *
      */
-    public function projetViewAction($id)
+    public function projetEditAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $projet=$em->getRepository('ContribuxBundle:Projet')->find($id);
-        return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet'=>$projet));
+        $projet = $em->getRepository('ContribuxBundle:Projet')->find(array('id' => $id));
+
+        if (!$projet) {
+            throw $this->createNotFoundException("Impossible");
+        }
+        if ($this->getUser() == $projet->getUser()) {  //On vérifie bien qu'il s'agit de l'auteur
+
+            $editForm = $this->createForm(ProjetType::class, $projet);
+            $editForm->handleRequest($request);
+
+            if ($editForm->isValid()) {
+                $projet->setDateModif(new \DateTime()); //nouvelle date
+                $em->flush();
+                $this->get('session')->getFlashBag()->add('info', "Le bon plan a bien été modifié.");
+                return $this->redirect($this->generateUrl('projet_view', array('id' => $id)));
+            }
+            return $this->render('ContribuxBundle:Projet:projetEdit.html.twig', array(
+                'projet' => $projet,
+                'form' => $editForm->createView(),
+
+
+            ));
+        } else {
+            //On lui indique l'erreur Forbidden 403
+            return $this->render('UserBundle:Default:privileges.html.twig', array('error' => 403));
+
+        }
     }
-
-
-
-
-
-
 
 
 }

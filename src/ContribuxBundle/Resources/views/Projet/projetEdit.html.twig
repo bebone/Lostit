@@ -1,14 +1,14 @@
 {% extends "::layout.html.twig" %}
 {% block title %}
-    {{ parent() }}  Modifier un projet
+    {{ parent() }}  Ajouter un projet
 {% endblock %}
 {% block contenu %}
 
     <div class="row content">
 
-        <h1>Modifier un projet logiciel sur le site</h1>
+        <h1>Ajouter un projet logiciel sur le site</h1>
 
-        <form action="{{ path("projet_create")}}" method="post" enctype="multipart/form-data">
+        <form action="{{ path("projet_edit", { 'id': projet.id })}}" method="post" enctype="multipart/form-data">
 
 
             <fieldset>
