@@ -1,6 +1,6 @@
 {% extends "::layout.html.twig" %}
 {% block title %}
-    {{ parent() }} {{ projet.titre }}
+    {{ parent() }} {{ projet.nom }}
 {% endblock %}
 {%  block scripts %}
     {{ parent() }}
@@ -15,7 +15,7 @@
     <div class="row content">
 
         <div class="projet-info">
-            <h1>{{ projet.titre }}</h1>
+            <h1>{{ projet.nom }}</h1>
 
              <div class="projet-description">{{ projet.description| raw }}</div>
             <p>  {{ projet.categorie.nom }}</p>

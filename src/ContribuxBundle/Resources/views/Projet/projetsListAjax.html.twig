@@ -6,7 +6,7 @@
         <div class="row projet-liste">
             <div class="col-md-12">
                 <div class="col-md-8">
-                    <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.titre }}</a></h2>
+                    <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.nom }}</a></h2>
                     <p>Ajouté par : <a href="/profile/{{ projet.user.username }}">{{ projet.user.username }}</a>
                         - le  {{ projet.dateCreation | date("d/m/Y à H:i") }}</p>
                     <p>Langage principal :

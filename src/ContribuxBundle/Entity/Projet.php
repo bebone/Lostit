@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="projet")
  * @ORM\Entity(repositoryClass="ContribuxBundle\Repository\ProjetRepository")
  */
-class Projet
-{
+class Projet {
+
     /**
      * @var int
      *
@@ -25,17 +25,16 @@ class Projet
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $titre;
-    
+    private $nom;
+
     /**
      * @var datetime
      *
      * @ORM\Column(name="dateCreation", type="datetime")
      */
     private $dateCreation;
-
 
     /**
      * @var \DateTime
@@ -58,7 +57,6 @@ class Projet
      */
     private $site;
 
-
     /**
      * @var boolean
      *
@@ -66,14 +64,12 @@ class Projet
      */
     private $documentation;
 
-
     /**
      * @var boolean
      *
      * @ORM\Column(name="developpement", type="boolean", length=255)
      */
     private $developpement;
-
 
     /**
      * @var boolean
@@ -89,7 +85,6 @@ class Projet
      */
     private $traduction;
 
-
     /**
      * @var boolean
      *
@@ -97,14 +92,11 @@ class Projet
      */
     private $tests;
 
-
-    
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Categorie",cascade={"persist"}, inversedBy="projets")
      *
      */
     private $categorie;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="projets")
@@ -112,25 +104,20 @@ class Projet
      */
     private $user;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="ContribuxBundle\Entity\Langage",cascade={"persist"}, inversedBy="projets")
      *
      */
     private $langage;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="pictureName", type="string", length=255, nullable=true)
      */
-    private $pictureName=null;
+    private $pictureName = null;
 
-
-
-    public function __construct()
-    {
+    public function __construct() {
         $this->dateCreation = new \DateTime();
         $this->dateModif = new \DateTime();
         $this->site = "http://"; //on indique déjà le http
@@ -147,41 +134,31 @@ class Projet
      */
     public $file;
 
-    public function getWebPath()
-    {
-        return null === $this->pictureName ? null : $this->getUploadDir().'/'.$this->pictureName;
+    public function getWebPath() {
+        return null === $this->pictureName ? null : $this->getUploadDir() . '/' . $this->pictureName;
     }
 
-
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    protected function getUploadRootDir() {
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
-
-    protected function getUploadDir()
-    {
+    protected function getUploadDir() {
         return 'uploads';
     }
 
-    public function uploadProjetPicture()
-    {
+    public function uploadProjetPicture() {
 
         $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
-        $this->pictureName = "uploads/".$this->file->getClientOriginalName();
+        $this->pictureName = "uploads/" . $this->file->getClientOriginalName();
         $this->file = null;
     }
-
-
-
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -192,8 +169,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -204,8 +180,7 @@ class Projet
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -216,8 +191,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -228,8 +202,7 @@ class Projet
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -240,8 +213,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setSite($site)
-    {
+    public function setSite($site) {
         $this->site = $site;
 
         return $this;
@@ -252,11 +224,9 @@ class Projet
      *
      * @return string
      */
-    public function getSite()
-    {
+    public function getSite() {
         return $this->site;
     }
-
 
     /**
      * Set dateCreation
@@ -265,8 +235,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDateCreation($dateCreation)
-    {
+    public function setDateCreation($dateCreation) {
         $this->dateCreation = $dateCreation;
 
         return $this;
@@ -277,8 +246,7 @@ class Projet
      *
      * @return \DateTime
      */
-    public function getDateCreation()
-    {
+    public function getDateCreation() {
         return $this->dateCreation;
     }
 
@@ -289,8 +257,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setCategorie(\ContribuxBundle\Entity\Categorie $categorie)
-    {
+    public function setCategorie(\ContribuxBundle\Entity\Categorie $categorie) {
         $this->categorie = $categorie;
 
         return $this;
@@ -301,8 +268,7 @@ class Projet
      *
      * @return \ContribuxBundle\Entity\Categorie
      */
-    public function getCategorie()
-    {
+    public function getCategorie() {
         return $this->categorie;
     }
 
@@ -313,8 +279,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setUser(\UserBundle\Entity\User $user)
-    {
+    public function setUser(\UserBundle\Entity\User $user) {
         $this->user = $user;
 
         return $this;
@@ -325,8 +290,7 @@ class Projet
      *
      * @return \UserBundle\Entity\User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -336,8 +300,7 @@ class Projet
      * @param string $pictureName
      * @return Projet
      */
-    public function setPictureName($pictureName)
-    {
+    public function setPictureName($pictureName) {
         $this->pictureName = $pictureName;
 
         return $this;
@@ -348,9 +311,12 @@ class Projet
      *
      * @return string
      */
-    public function getPictureName()
-    {
-        return $this->pictureName;
+    public function getPictureName() {
+        if ($this->pictureName == "") {
+            return "/bundles/contribux/img/default.png";
+        } else {
+            return $this->pictureName;
+        }
     }
 
     /**
@@ -360,8 +326,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setLangage(\ContribuxBundle\Entity\Langage $langage = null)
-    {
+    public function setLangage(\ContribuxBundle\Entity\Langage $langage = null) {
         $this->langage = $langage;
 
         return $this;
@@ -372,8 +337,7 @@ class Projet
      *
      * @return \ContribuxBundle\Entity\Langage
      */
-    public function getLangage()
-    {
+    public function getLangage() {
         return $this->langage;
     }
 
@@ -384,8 +348,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDateModif($dateModif)
-    {
+    public function setDateModif($dateModif) {
         $this->dateModif = $dateModif;
 
         return $this;
@@ -396,33 +359,8 @@ class Projet
      *
      * @return \DateTime
      */
-    public function getDateModif()
-    {
+    public function getDateModif() {
         return $this->dateModif;
-    }
-
-    /**
-     * Set titre
-     *
-     * @param string $titre
-     *
-     * @return Projet
-     */
-    public function setTitre($titre)
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
-    /**
-     * Get titre
-     *
-     * @return string
-     */
-    public function getTitre()
-    {
-        return $this->titre;
     }
 
     /**
@@ -432,8 +370,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDocumentation($documentation)
-    {
+    public function setDocumentation($documentation) {
         $this->documentation = $documentation;
 
         return $this;
@@ -444,8 +381,7 @@ class Projet
      *
      * @return boolean
      */
-    public function getDocumentation()
-    {
+    public function getDocumentation() {
         return $this->documentation;
     }
 
@@ -456,8 +392,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setDeveloppement($developpement)
-    {
+    public function setDeveloppement($developpement) {
         $this->developpement = $developpement;
 
         return $this;
@@ -468,8 +403,7 @@ class Projet
      *
      * @return boolean
      */
-    public function getDeveloppement()
-    {
+    public function getDeveloppement() {
         return $this->developpement;
     }
 
@@ -480,8 +414,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setGraphisme($graphisme)
-    {
+    public function setGraphisme($graphisme) {
         $this->graphisme = $graphisme;
 
         return $this;
@@ -492,8 +425,7 @@ class Projet
      *
      * @return boolean
      */
-    public function getGraphisme()
-    {
+    public function getGraphisme() {
         return $this->graphisme;
     }
 
@@ -504,8 +436,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setTraduction($traduction)
-    {
+    public function setTraduction($traduction) {
         $this->traduction = $traduction;
 
         return $this;
@@ -516,8 +447,7 @@ class Projet
      *
      * @return boolean
      */
-    public function getTraduction()
-    {
+    public function getTraduction() {
         return $this->traduction;
     }
 
@@ -528,8 +458,7 @@ class Projet
      *
      * @return Projet
      */
-    public function setTests($tests)
-    {
+    public function setTests($tests) {
         $this->tests = $tests;
 
         return $this;
@@ -540,8 +469,8 @@ class Projet
      *
      * @return boolean
      */
-    public function getTests()
-    {
+    public function getTests() {
         return $this->tests;
     }
+
 }

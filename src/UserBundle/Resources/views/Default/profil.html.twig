@@ -36,7 +36,7 @@
                 <p>Aucun projet aujouté</p>
             {% else %}
                 {% for projet in projets %} {#TODO liste la globalité des projets sur la page #}
-                    <h3><a href="/projet/{{ projet.id }}">{{ projet.titre }}</a></h3>
+                    <h3><a href="/projet/{{ projet.id }}">{{ projet.nom }}</a></h3>
                     <p>Aujouté le {{ projet.dateCreation | date("d/m/Y à H:i") }} </p>
 
                 {% endfor %}

@@ -15,7 +15,7 @@ class ProjetType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('titre',null,array('attr'=>array('class'=>"form-control"),'required'=>true))
+            ->add('nom',null,array('attr'=>array('class'=>"form-control"),'required'=>true))
             ->add('description',null,array('attr'=>array('class'=>"form-control",'name'=>'ckeditor'),'required'=>true))
             ->add('file',null,array('attr'=>array('class'=>"form-control"),'label'=>'Image'))
             ->add('site',null,array('attr'=>array('class'=>"form-control"), 'label'=>'Site web du projet'))

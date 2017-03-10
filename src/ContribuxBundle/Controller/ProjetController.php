@@ -29,7 +29,7 @@ class ProjetController extends Controller
 
     /**
      *
-     * @Route("/projet/{id}", name="projet_view")
+     * @Route("/projet/{id}", name="projet_view", requirements={"id": "\d+"})
      *
      */
     public function projetViewAction($id)
@@ -158,7 +158,7 @@ class ProjetController extends Controller
             if ($editForm->isValid()) {
                 $projet->setDateModif(new \DateTime()); //nouvelle date
                 $em->flush();
-                $this->get('session')->getFlashBag()->add('info', "Le bon plan a bien été modifié.");
+                $this->get('session')->getFlashBag()->add('info', "Le projet a bien été modifié.");
                 return $this->redirect($this->generateUrl('projet_view', array('id' => $id)));
             }
             return $this->render('ContribuxBundle:Projet:projetEdit.html.twig', array(

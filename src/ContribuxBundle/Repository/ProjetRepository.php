@@ -87,7 +87,7 @@ class ProjetRepository extends \Doctrine\ORM\EntityRepository
 
         $qb = $this->createQueryBuilder('p')
             //->leftJoin('p.categorie', 'c')
-            ->andWhere('p.titre LIKE :nom')
+            ->andWhere('p.nom LIKE :nom')
             ->setParameter('nom', $nom . '%');
 
         $query = $qb->getQuery();
