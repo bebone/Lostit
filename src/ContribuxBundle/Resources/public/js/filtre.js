@@ -1,7 +1,6 @@
-<script>
-    $(document).ready(function () {
+$(document).ready(function () {
         var url = "projets_ajax/";
-        $("#target-content").load("{{ path('projets_ajax',{'page': 1}) }}", function(){}).hide().fadeIn("slow");
+        $("#target-content").load(url + "1", function(){}).fadeIn("slow");
 
         $(document).on("click", ".pagination li", function (e) {
             e.preventDefault();
@@ -40,4 +39,5 @@
             $(this).addClass('active');
         });
     });
-</script>
+
+
