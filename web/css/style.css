@@ -1,4 +1,11 @@
-/* IMPORTATION FONTS GOOGUEULE*/
+/* 
+Anaïs VIDAL
+Contribux
+CSS stylesheet
+*/
+
+
+/*IMPORTATION DES FONTS GNU GUEULE*/
 @import url('https://fonts.googleapis.com/css?family=Baumans|Open+Sans:300,400');
 /*******************/
 
@@ -40,12 +47,12 @@ nav a {
 
 }
 
-
+/**** CLASSs *****/
 .navbar {
     margin-bottom: 0;
     background-color: #424244 !important;
     border: 0;
-    font-size: 11px !important;
+    font-size: 13px !important;
     opacity:0.9;
     font-weight:bold;
 }
@@ -58,12 +65,13 @@ nav a {
 
 
 .navbar li a, .navbar {
-    color: #d5d5d5 !important;
+
+    color: #E67E22 !important;
 }
 
 
 .navbar-nav li a:hover {
-    color: #fff !important;
+    color: #E67E22 !important;
 }
 
 
@@ -157,10 +165,26 @@ nav a {
 }
 
 .connected {
-    background-color:#E67E22;
     font-weight:800;
     font-size: 20px;
 }
+
+.animjs {visibility:hidden;}
+.animcss {
+
+    animation-name: animcss;
+    -webkit-animation-name: animcss;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+}
+
+.message-flash {
+    margin-top:75px;
+}
+
+
+/**** IDs *****/
 #titre-accueil, #boutons-accueil, #description-accueil {
   text-align: center;
 }
@@ -183,17 +207,8 @@ nav a {
 }
 
 
-.animjs {visibility:hidden;}
-.animcss {
 
-    animation-name: animcss;
-    -webkit-animation-name: animcss;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    visibility: visible;
-}
-
-
+/* ANIMATIONS */
 @keyframes animcss {
     0% {
         opacity: 0;

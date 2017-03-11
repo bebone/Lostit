@@ -17,6 +17,6 @@ class LoginListener {
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-        $event->getRequest()->getSession()->getFlashBag()->add('info', "Tu es charmante !!");
+        $event->getRequest()->getSession()->getFlashBag()->add('info', "Vous êtes connecté.");
     }
 }

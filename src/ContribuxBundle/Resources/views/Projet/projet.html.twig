@@ -17,7 +17,7 @@
         <div class="projet-info">
             <h1>{{ projet.nom }}</h1>
 
-             <div class="projet-description">{{ projet.description| raw }}</div>
+             <div class="projet-description">{{ projet.description| html }}</div>
             <p>  {{ projet.categorie.nom }}</p>
             <p>  {{ projet.langage.nom }}</p>
             <p> {{ projet.user.username }}</p>

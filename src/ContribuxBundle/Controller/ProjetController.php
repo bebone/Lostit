@@ -68,6 +68,7 @@ class ProjetController extends Controller
     /**
      *
      * @Route("/mes-projets", name="mes_projets_list")
+     * @Secure(roles="ROLE_USER")
      *
      */
     public function mesProjetsListAction()

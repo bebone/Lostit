@@ -21,3 +21,8 @@ services:
             class: ContribuxBundle\Handler\LogoutHandler
             arguments:
                 session: "@session"
+                
+    mon_extension.twig:
+                 class: ContribuxBundle\Twig\ExtensionFiltre
+                 tags:
+                     - { name: twig.extension }

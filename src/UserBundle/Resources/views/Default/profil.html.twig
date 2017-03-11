@@ -10,7 +10,7 @@
                 </button>
             {% endif %}
             <h2> Bio</h2>
-            {{ user.bio }}
+            {{ user.bio|html }}
             <h2>IRC</h2>
             <p>Serveur :
                 {% if user.ircNetwork is empty %}

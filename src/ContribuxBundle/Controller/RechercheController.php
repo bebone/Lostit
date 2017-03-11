@@ -104,8 +104,9 @@ class RechercheController extends Controller
      */
     public function rechercheLangageAjaxAction($id, $page) {
 
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage =4; //indication dans le controller
         $em = $this->getDoctrine()->getManager();
+        //Appel à la requete dans le repository
         $projets=$em->getRepository('ContribuxBundle:Projet')->getLangageProjets($id, $page,$nbParPage);
 
 

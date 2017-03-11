@@ -1,117 +1,121 @@
+{#LAYOUT Principal - Contribux#}
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% block stylesheets %} {# Import Feuilles de styles #}
+        {% block stylesheets %} {# Import Feuilles de styles #}
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              type="text/css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
-    {% endblock %}
-    {% block scripts %} {# Import Javascript etc. #}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% endblock %}
-    <title>{% block title %}contribux |  {% endblock %}</title>
-</head>
-<body>
-
-{# Menu En-tete  ###################}
-{% block header %}
-
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headMenu">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Contribux</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/projets">PROJETS</a></li>
-                    <li><a href="/rechercher">RECHERCHER</a></li>
-
-
-                    {% if app.user %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle connected" data-toggle="dropdown" href="#">
-                                <span class="fa fa-user"></span> {{ app.user.username }}
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/projet/create"><span class="fa fa-plus-circle"></span> Ajouter un
-                                        projet</a></li>
-                                <li><a href="/mes-projets"><span class="fa fa-list"></span> Mes projets</a></li>
-                                <li><a href="/profile/{{ app.user.username }}"><span class="fa fa-user-circle"></span> Mon profil</a></li>
-                                <li><a href="/logout"><span class="fa fa-sign-out"></span> Se déconnecter</a></li>
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Non connecté
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/login">Se connecter</a></li>
-                                <li><a href="/register">S'inscrire</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-{% endblock %}
-
-
-{% for type, flashMessages in app.session.flashbag.all() %}
-    {% for flashMessage in flashMessages %}
-        <div class="row">
-            <strong>  {{ flashMessage }} </strong>
-        </div>
-    {% endfor %}
-{% endfor %}
-
-{# Contenu ###########("content" est un mot reservé -> utiliser "contenu" instead)###########}
-{% block contenu %}
-{% endblock %}
-
-
-{# Pied de Page #######################}
-<footer>
-    <div class="row col-md-12" id="footer">
-
-        <div class="col-md-offset-4 col-md-3">
-            <ul>
-            <li><a href="/mentions-legales">Mentions Légales</a></li>
-            <li><a href="/qui-sommes-nous">À propos</a></li>
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <ul>
-            <li><a href="/projets/1">Projets</a></li>
-            <li><a href="">Rechercher</a></li>
-            </ul>
-        </div>
-        <div class="row col-md-12 footer text-center">
-           <strong>Contribux - Master CIM - 2017 </strong>
-        </div>
-
-        {% block footer %}
-            {# au cas où ...#}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                  type="text/css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
         {% endblock %}
-    </div>
-</footer>
+        {% block scripts %} {# Import Javascript etc. #}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% endblock %}
+        <title>{% block title %}contribux |  {% endblock %}</title>
+    </head>
+    <body>
 
-</body>
+        {# Menu En-tete  ###################}
+        {% block header %}
+
+
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#headMenu">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">Contribux</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/projets">LES PROJETS</a></li>
+                            <li><a href="/rechercher">RECHERCHER</a></li>
+
+
+                            {% if app.user %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle connected" data-toggle="dropdown" href="#">
+                                        <span class="fa fa-user"></span> {{ app.user.username }}
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/projet/create"><span class="fa fa-plus-circle"></span> Ajouter un
+                                                projet</a></li>
+                                        <li><a href="/mes-projets"><span class="fa fa-list"></span> Mes projets</a></li>
+                                        <li><a href="/profile/{{ app.user.username }}"><span class="fa fa-user-circle"></span> Mon profil</a></li>
+                                        <li><a href="/logout"><span class="fa fa-sign-out"></span> Se déconnecter</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Non connecté
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/login">Se connecter</a></li>
+                                        <li><a href="/register">S'inscrire</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        {% endblock %}
+
+
+        {% for type, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                <div class="panel panel-success message-flash">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ flashMessage }}</h3>
+                    </div>
+                  
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {# Contenu ###########("content" est un mot reservé -> utiliser "contenu" instead)###########}
+        {% block contenu %}
+        {% endblock %}
+
+
+        {# Pied de Page #######################}
+        <footer>
+            <div class="row col-md-12" id="footer">
+
+                <div class="col-md-offset-4 col-md-3">
+                    <ul>
+                        <li><a href="/mentions-legales">Mentions Légales</a></li>
+                        <li><a href="/qui-sommes-nous">À propos</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul>
+                        <li><a href="/projets/1">Projets</a></li>
+                        <li><a href="">Rechercher</a></li>
+                    </ul>
+                </div>
+                <div class="row col-md-12 footer text-center">
+                    <strong>Contribux - Master CIM - 2017 </strong>
+                </div>
+
+                {% block footer %}
+                    {# au cas où ...#}
+                {% endblock %}
+            </div>
+        </footer>
+
+    </body>
 </html>
 
 
