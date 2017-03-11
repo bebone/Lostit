@@ -1,12 +1,12 @@
 {% extends "::layout.html.twig" %}
 {% block title %}
-    {{ parent() }}  Modifier un projet
+    {{ parent() }}  {{action}} un projet
 {% endblock %}
 {% block contenu %}
 
     <div class="row content">
 
-        <h1>Modifier un projet logiciel sur le site</h1>
+        <h1>{{action}} un projet logiciel sur le site</h1>
 
         <form action="{{ path("projet_create")}}" method="post" enctype="multipart/form-data">
 

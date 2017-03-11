@@ -160,6 +160,8 @@ nav a {
 
 }
 
+
+
 .accueil {
     background-color: #99CDD8;
 }
@@ -196,6 +198,10 @@ nav a {
 #description-accueil {
   margin-bottom: 10%;
   font-size: 1.5em;
+}
+
+#btn-suppr  {
+    color:#FFF !important;
 }
 
 #footer {

@@ -10,43 +10,36 @@ use ContribuxBundle\Entity\Categorie;
 use Symfony\Component\HttpFoundation\Request;
 use ContribuxBundle\Form\Type\ProjetType;
 
-class ProjetController extends Controller
-{
-
+class ProjetController extends Controller {
 
     /**
      *
      * @Route("/projets", name="projets_list")
      *
      */
-    public function projetsListAction()
-    {
+    public function projetsListAction() {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('ContribuxBundle:Categorie')->findAll();
         return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('categories' => $categories));
     }
-
 
     /**
      *
      * @Route("/projet/{id}", name="projet_view", requirements={"id": "\d+"})
      *
      */
-    public function projetViewAction($id)
-    {
+    public function projetViewAction($id) {
         $em = $this->getDoctrine()->getManager();
         $projet = $em->getRepository('ContribuxBundle:Projet')->find($id);
         return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet' => $projet));
     }
-
 
     /**
      *
      * @Route("/projets_ajax/{page}", name="projets_ajax")
      *
      */
-    public function projetsAjaxAction($page)
-    {
+    public function projetsAjaxAction($page) {
 
         $nbParPage = 2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
@@ -61,9 +54,7 @@ class ProjetController extends Controller
         );
 
         return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets' => $projets, 'pagination' => $pagination));
-
     }
-
 
     /**
      *
@@ -71,12 +62,10 @@ class ProjetController extends Controller
      * @Secure(roles="ROLE_USER")
      *
      */
-    public function mesProjetsListAction()
-    {
+    public function mesProjetsListAction() {
 
         return $this->render('ContribuxBundle:Projet:mesProjetsList.html.twig');
     }
-
 
     /**
      *
@@ -84,8 +73,7 @@ class ProjetController extends Controller
      * @Secure(roles="ROLE_USER")
      *
      */
-    public function mesProjetsAjaxAction($page)
-    {
+    public function mesProjetsAjaxAction($page) {
         $nbParPage = 2; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser(); //On récupère l'utilisateur
@@ -102,15 +90,13 @@ class ProjetController extends Controller
         return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets' => $projets, 'pagination' => $pagination));
     }
 
-
     /**
      *
      * @Route("/projet/create", name="projet_create")
      * @Secure(roles="ROLE_USER")
      *
      */
-    public function projetCreateAction(Request $request)
-    {
+    public function projetCreateAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $projet = new Projet();
         $user = $this->getUser(); //On récupère l'utilisateur
@@ -128,14 +114,12 @@ class ProjetController extends Controller
         }
 
         return $this->render('ContribuxBundle:Projet:projetCreate.html.twig', array(
-            'entity' => $projet,
-            'form' => $form->createView(),
-            'action' => 'Ajouter',
-            'route'=>'projet_create'
+                    'entity' => $projet,
+                    'form' => $form->createView(),
+                    'action' => 'Ajouter',
+                    'route' => 'projet_create'
         ));
-
     }
-
 
     /**
      *
@@ -143,8 +127,7 @@ class ProjetController extends Controller
      * @Secure(roles="ROLE_USER")
      *
      */
-    public function projetEditAction(Request $request, $id)
-    {
+    public function projetEditAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $projet = $em->getRepository('ContribuxBundle:Projet')->find(array('id' => $id));
 
@@ -152,7 +135,6 @@ class ProjetController extends Controller
             throw $this->createNotFoundException("Impossible");
         }
         if ($this->getUser() == $projet->getUser()) {  //On vérifie bien qu'il s'agit de l'auteur
-
             $editForm = $this->createForm(ProjetType::class, $projet);
             $editForm->handleRequest($request);
 
@@ -163,17 +145,37 @@ class ProjetController extends Controller
                 return $this->redirect($this->generateUrl('projet_view', array('id' => $id)));
             }
             return $this->render('ContribuxBundle:Projet:projetEdit.html.twig', array(
-                'projet' => $projet,
-                'form' => $editForm->createView(),
-
-
+                        'projet' => $projet,
+                        'form' => $editForm->createView(),
             ));
         } else {
             //On lui indique l'erreur Forbidden 403
             return $this->render('UserBundle:Default:privileges.html.twig', array('error' => 403));
-
         }
     }
 
+    /**
+     *
+     * @Route("/projet/{id}/delete", name="projet_delete")
+     * @Secure(roles="ROLE_USER")
+     *
+     */
+    public function projetDeleteAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $projet = $em->getRepository('ContribuxBundle:Projet')->find(array('id' => $id));
+
+        if (!$projet) {
+            throw $this->createNotFoundException("Impossible");
+        }
+        if ($this->getUser() == $projet->getUser()) {  //On vérifie bien qu'il s'agit de l'auteur
+            $em->remove($projet); //suppression
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('info', "Le projet a bien été supprimé.");
+            return $this->redirect($request->headers->get('referer'));
+        } else {
+            //On lui indique l'erreur Forbidden 403
+            return $this->render('UserBundle:Default:privileges.html.twig', array('error' => 403));
+        }
+    }
 
 }
