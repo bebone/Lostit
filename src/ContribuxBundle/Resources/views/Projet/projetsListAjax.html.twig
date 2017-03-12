@@ -15,8 +15,8 @@
                     </p>
                     <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
                     <p>Site web du projet :
-                        {% if projet.site=="http://" %}
-                        <strong>non indiqué</strong></p>
+                        {% if projet.site=="Non renseigné" %}
+                        <strong>Non indiqué</strong></p>
                     {% else %}
                         <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
                     {% endif %}

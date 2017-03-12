@@ -41,7 +41,7 @@ class ProjetController extends Controller {
      */
     public function projetsAjaxAction($page) {
 
-        $nbParPage = 2; //TODO (10 en dur)
+        $nbParPage = 4; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $projets = $em->getRepository('ContribuxBundle:Projet')->getAllProjets($page, $nbParPage);
 
@@ -74,7 +74,7 @@ class ProjetController extends Controller {
      *
      */
     public function mesProjetsAjaxAction($page) {
-        $nbParPage = 2; //TODO (10 en dur)
+        $nbParPage = 4; //TODO (10 en dur)
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser(); //On récupère l'utilisateur
         $projets = $em->getRepository('ContribuxBundle:Projet')->getMyProjets($page, $nbParPage, $user);
@@ -110,7 +110,7 @@ class ProjetController extends Controller {
             $em->persist($projet);
             $em->flush();
             $this->get('session')->getFlashBag()->add('info', "Le projet a bien été ajouté");
-            return $this->redirect($this->generateUrl('projet_view'));
+            return $this->redirect($this->generateUrl('mes_projets_list'));
         }
 
         return $this->render('ContribuxBundle:Projet:projetCreate.html.twig', array(

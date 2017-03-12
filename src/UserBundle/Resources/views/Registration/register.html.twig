@@ -1,88 +1,86 @@
 {% extends "::layout.html.twig" %}
-{% block titre %}
-    S'inscrire
+{% block title %}
+    {{parent()}} S'inscrire
 {% endblock %}
 
 
 {% block contenu %}
-    <center>
-<h1>Inscris-toi sur HenaHena !</h1>
 
-    <form  action="{{ path('fos_user_registration_register') }}" method="POST">
+    <div class="row content ">
+        <h1>Inscrivez vous sur Contribux </h1>
 
-        <div class="form-group {% if form_errors(form.email)|length >1 %} error{% endif %}">
-            <label for="username" class="control-label">Adresse e-mail : </label>
+        <form  action="{{ path('fos_user_registration_register') }}" method="POST" class="form-horizontal">
+
+            <div class="form-group {% if form_errors(form.email)|length >1 %} error{% endif %}">
+                <label for="username" class="col-md-4 control-label">Adresse e-mail : </label>
+                <div class="col-md-4">
                 {{ form_widget(form.email) }}
-        </div>
-        <div class="form-group">
-            <label for="prenom" class="control-label">Prénom : </label>
-
-                {{ form_widget(form.username) }}
-        </div>
-        <div class="form-group {% if form_errors(form.plainPassword.first)|length >1 %} error{% endif %}">
-            <label for="username" class="control-label">Mot de passe : </label>
-                {{ form_widget(form.plainPassword.first) }}
-                <span class="help-inline">{{ form_errors(form.plainPassword.first) }}</span>
-        </div>
-        <div class="form-group">
-            <label for="username" class="control-label">Confirmer votre mot de passe : </label>
-                {{ form_widget(form.plainPassword.second) }}
-
-        </div>
-
-        <div class="form-group">
-            <label for="nom" class="control-label">Nom : </label>
-            {{ form_widget(form.ircUsername) }}
-        </div>
-
-        <div class="form-group">
-            <label for="prenom" class="control-label">Prénom : </label>
-
-                {{ form_widget(form.ircNetwork) }}
-        </div>
-
-        <div class="form-group">
-            <label for="statut" class="control-label">Statut : </label>
-
-                {{ form_widget(form.bio) }}
-
-        </div>
-        <div class="form-group">
-            <label for="datenaiss" class="control-label">Date de naissance : </label>
-                {{ form_widget(form.site) }}
-        </div>
-
-
-        <div class="form-group">
-            <div class="controls">
-                <button type="submit" class="btn btn-info">S'inscrire <i class="icon-white icon-edit"></i></button>
+                </div>
             </div>
-        </div>
-        {{ form_rest(form) }}
-    </form>
-    </center>
+            <div class="form-group">
+                <label for="prenom" class="col-md-4 control-label">Nom d'utilisateur : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div>
+            <div class="form-group {% if form_errors(form.plainPassword.first)|length >1 %} error{% endif %}">
+                <label for="username" class="col-md-4 control-label">Mot de passe : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.plainPassword.first) }}
+                    <span class="help-inline">{{ form_errors(form.plainPassword.first) }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username" class="col-md-4 control-label">Confirmer votre mot de passe : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.plainPassword.second) }}
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="nom" class="col-md-4 control-label">Nom d'utilisateur IRC: </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.ircUsername) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="prenom" class="col-md-4 control-label">Serveur IRC : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.ircNetwork) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="statut" class="col-md-4 control-label">Biographie : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.bio) }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="datenaiss" class="col-md-4 control-label">Votre site internet : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.site) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-5">
+                <button type="submit" class="btn btn-lg btn-primary btn-login">S'inscrire </button>
+            </div>
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
 
 {% endblock %}
-{% block scripts %}
-{{ parent() }}
-   <script src="{{asset("assets/jquery-ui/jquery-ui.min.js")}}"></script>
-    <script src="{{asset("assets/jquery-ui/datepicker-fr.js")}}"></script>
+{% block scripts_footer %}
+    {{parent()}}
+    <script src="{{ asset('bundles/contribux/ckeditor/ckeditor.js') }}"></script>
     <script>
-    $('#datepicker').datepicker($.datepicker.regional['fr']);
-    $.datepicker.setDefaults({
-        dateFormat: 'yy-mm-dd',
-        minDate: '1930-01-01',
-        maxDate: '2017-01-01',
-
-    });
-    afficherCalendrier('fos_user_registration_form_dateNaissance');
-    function afficherCalendrier(idInputDate)
-    {
-        $('#' + idInputDate).datepicker({
-            dateFormat: 'yy-mm-dd',
-            firstDay: 1,
-            defaultDate: '1990-01-01'
-        });
-    }
+        CKEDITOR.replace('fos_user_registration_form[bio]');
     </script>
 {% endblock %}

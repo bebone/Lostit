@@ -6,23 +6,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
-
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
-class User extends BaseUser
-{
+class User extends BaseUser {
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-
 
     /**
      * @var string
@@ -45,7 +42,6 @@ class User extends BaseUser
      */
     private $ircNetwork;
 
-
     /**
      * @var string
      *
@@ -53,27 +49,20 @@ class User extends BaseUser
      */
     private $site;
 
-
-
-
-
     /**
      * @var ArrayCollection $projets
      * @ORM\OneToMany(targetEntity="ContribuxBundle\Entity\Projet", mappedBy="user")
      */
     private $projets;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
-
 
     /**
      * Set ircUsername
@@ -82,8 +71,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setIrcUsername($ircUsername)
-    {
+    public function setIrcUsername($ircUsername) {
         $this->ircUsername = $ircUsername;
 
         return $this;
@@ -94,11 +82,13 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getIrcUsername()
-    {
-        return $this->ircUsername;
+    public function getIrcUsername() {
+        if ($this->username!="" && $this->ircUsername == "") {
+            return "Aucun";
+        } else {
+            return $this->ircUsername;
+        }
     }
-
 
     /**
      * Set ircNetwork
@@ -107,8 +97,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setIrcNetwork($ircNetwork)
-    {
+    public function setIrcNetwork($ircNetwork) {
         $this->ircNetwork = $ircNetwork;
 
         return $this;
@@ -119,11 +108,14 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getIrcNetwork()
-    {
-        return $this->ircNetwork;
+    public function getIrcNetwork() {
+        if ($this->username!="" && $this->ircNetwork == "") {
+            //Si l'utilisateur ne l'a pas renseigné
+            return "Aucun";
+        } else {
+            return $this->ircNetwork;
+        }
     }
-
 
     /**
      * Set bio
@@ -132,8 +124,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setBio($bio)
-    {
+    public function setBio($bio) {
         $this->bio = $bio;
 
         return $this;
@@ -144,23 +135,16 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getBio()
-    {
+    public function getBio() {
         return $this->bio;
     }
-
-
-
-
-
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->projets = new ArrayCollection();
-        $this->site="http://";
+        $this->site = "http://";
         parent::__construct();
     }
 
@@ -171,8 +155,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addProjet(\ContribuxBundle\Entity\Projet $projet)
-    {
+    public function addProjet(\ContribuxBundle\Entity\Projet $projet) {
         $this->projets[] = $projet;
 
         return $this;
@@ -183,8 +166,7 @@ class User extends BaseUser
      *
      * @param \ContribuxBundle\Entity\Projet $projet
      */
-    public function removeProjet(\ContribuxBundle\Entity\Projet $projet)
-    {
+    public function removeProjet(\ContribuxBundle\Entity\Projet $projet) {
         $this->projets->removeElement($projet);
     }
 
@@ -193,8 +175,7 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProjets()
-    {
+    public function getProjets() {
         return $this->projets;
     }
 
@@ -205,8 +186,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setSite($site)
-    {
+    public function setSite($site) {
         $this->site = $site;
 
         return $this;
@@ -217,8 +197,13 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getSite()
-    {
+    public function getSite() {
+        if ($this->site=="http://") {
+            return "Aucun";
+        }
+        else {
         return $this->site;
+        }
     }
+
 }

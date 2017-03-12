@@ -33,10 +33,10 @@ class DefaultController extends Controller
 
     /**
      *
-     * @Route("/qui-sommes-nous", name="about")
+     * @Route("/a-propos", name="about")
      */
-    public function quisommesNousAction()
+    public function aProposAction()
     {
-        return $this->render('ContribuxBundle:Default:qui-sommes-nous.html.twig');
+        return $this->render('ContribuxBundle:Default:a-propos.html.twig');
     }
 }

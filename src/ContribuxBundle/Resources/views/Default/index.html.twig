@@ -20,7 +20,7 @@
 {% endblock%}
 
 {%block title %}
-    {{parent()}} Recherche d'objets perdus
+    {{parent()}} Contribuons ensemble
 {% endblock%}
 
 {% block contenu %}
@@ -28,46 +28,48 @@
         <h1 id="titre-accueil"> La plateforme pour contribuer à des logiciels</h1>
         <div id="description-accueil">
             <p>Vous avez un projet ? </p>
-                <p>Demandez à des volontaires de vous aider ! </p>
+            <p>Demandez à des volontaires de vous aider ! </p>
             <p>Vous êtes volontaire ?</p>
-                <p>Apportez vos compétences au développement de projets ! WE WANT YOU !</p>
+            <p>Apportez vos compétences au développement de projets ! WE WANT YOU !</p>
             <h4>Parce qu'un logiciel ne se limite pas à la technique...</h4>
 
         </div>
         <div id="boutons-accueil">
             <a class="btn-accueil" href="/projet/create"><span class="fa fa-life-ring"></span> DEMANDER DE L'AIDE</a>
-            <a class="btn-accueil" href="#"> <span class="fa fa-handshake-o"></span> APPORTER SON AIDE</a>
+            <a class="btn-accueil" href="/projets"> <span class="fa fa-handshake-o"></span> APPORTER SON AIDE</a>
         </div>
     </div>
-    <div class="row content">
-        <h1>Contribux, c'est 5 apports différents</h1>
-        <div class="text-center">
+    <div class="row">
+        <h1>Contribux, c'est 5 compétences complémentaires</h1>
+        <div class="text-center apports">
 
             <div class="row animjs">
                 <div class=" col-md-offset-1 col-md-2">
-                    <span class="glyphicon glyphicon-off"></span>
-                    <h4>Développeurs.euses</h4>
-                    <p>Si tu connais la console et que tu </p>
+                    <span class="fa fa-desktop"></span>
+                    <h4>Développeurs·euses</h4>
+                    <p><code>Hello World !  </code></p>
+                   
                 </div>
                 <div class="col-md-2">
-                    <span class="glyphicon glyphicon-heart"></span>
-                    <h4>Testeurs.euses</h4>
-                    <p>Un logiciel ne se résume pas à son développement. Le retour utilisateur est aussi essentiel.</p>
+                    <span class="fa fa-cogs"></span>
+                    <h4>Testeurs·euses</h4>
+                    <p>Un logiciel ne se résume pas à son codage.</p> 
+                    <p>Le retour utilisateur est essentiel pour l'amélioration de celui-ci.</p> <p>N'importe qui peut soumettre ses idées, remonter des bugs</p>
                 </div>
                 <div class="col-md-2">
-                    <span class="glyphicon glyphicon-lock"></span>
-                    <h4>Traducteurs.trices</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
+                    <span class="fa fa-globe"></span>
+                    <h4>Traducteurs·trices</h4>
+                    <p>Faire en sorte que le logiciel soit compréhensible aux utilisateurs du monde entier !</p>
                 </div>
                 <div class="col-md-2">
-                    <span class="glyphicon glyphicon-lock"></span>
-                    <h4>Rédacteur.trices</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
+                    <span class="fa fa-book"></span>
+                    <h4>Rédacteur·trices</h4>
+                    <p>Une documentation est essentielle pour un logiciel. Elle accompagne l'utilisateur dans sa prise en main</p>
                 </div>
                 <div class="col-md-2">
-                    <span class="glyphicon glyphicon-lock"></span>
+                    <span class="fa fa-paint-brush"></span>
                     <h4>Graphistes</h4>
-                    <p>Lorem ipsum dolor sit amet..</p>
+                    <p>Pour améliorer le design de l'application</p><p>Voir même créer l'identité graphique de celle ci </p>
                 </div>
             </div>
             <br><br>
@@ -75,8 +77,38 @@
         </div>
     </div>
 
-    <div class="row content">
-        <h1>Ils en parlent</h1>
+    <div class="row ">
+        <h1>Ils en parlent mieux que nous</h1>
+        {# Caroussel #}
+        <div id="caroussel" class="carousel slide text-center" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#caroussel" data-slide-to="0" class="active"></li>
+                <li data-target="#caroussel" data-slide-to="1"></li>
+                <li data-target="#caroussel" data-slide-to="2"></li>
+            </ul>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h4>"Nous sommes maintenant 3 sur le projet, j'ai fait de belles rencontres"<br><span style="font-style:normal;">Nico, développeur web, créateur du projet Kaktuss</span></h4>
+                </div>
+                <div class="item">
+                    <h4>"J'aime bien les langues, alors je me suis lancée dans la traduction... et je m'éclate !"<br><span style="font-style:normal;">Élodie, traductrice volontaire pour le projet @Go</span></h4>
+                </div>
+                <div class="item">
+                    <h4>"Je ne suis pas un as du clavier mais pour donner mon avis, je suis toujours là"<br><span style="font-style:normal;">Grégoire, testeur volontaire</span></h4>
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#caroussel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#caroussel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
 
 {% endblock %}

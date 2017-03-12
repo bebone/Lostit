@@ -2,6 +2,7 @@
 {% block title %}
     {{ parent() }}  Modifier un projet
 {% endblock %}
+
 {% block contenu %}
 
     <div class="row content">
@@ -55,8 +56,11 @@
             </fieldset>
         </form>
     </div>
+{% endblock %}
+{% block scripts_footer %}
+    {{parent()}}
     <script src="{{ asset('bundles/contribux/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('projet_create[description]');
     </script>
-{% endblock %}
+{%endblock%}

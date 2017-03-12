@@ -1,26 +1,33 @@
 {% extends "::layout.html.twig" %}
-{% block titre %} Se connecter {% endblock %}
+{% block title %} {{parent()}} Se connecter {% endblock %}
 
 {% block contenu %}
-    <div class="row content">
+    <div class="row content text-center">
     
-    <h1>Ravi de te revoir !</h1>
+    <h1>Connexion</h1>
 
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
-        <div class="form-group">
-        <input type="text" class="form-control" placeholder="E-mail" name="_username" value="{{ last_username }}" required autofocus>
+    <form action="{{ path("fos_user_security_check") }}" method="POST" class="form-horizontal">
+        <div class="form-group form-login">
+            <label for="inputUsername" class="col-md-4 control-label">Nom d'utilisateur</label>
+             <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Utilisateur" name="_username" value="{{ last_username }}" required autofocus>
+        </div>
         </div>
         <div class="form-group">
+            <label for="inputPassword" class="col-md-4 control-label">Mot de passe</label>
+             <div class="col-md-4">
             <input type="password" class="form-control" placeholder="Mot de passe" name="_password" required>
+             </div>
         </div>
         
-         <div class="form-group">
-                 Garder ma session active ?
-                 <input type="checkbox" name="_remember_me" value="on">
-         </div>
+         <div>
+            Garder ma session active ? 
         
-        <div class="form-group btn-login">
-        <button class="btn btn-lg btn-primary login" type="submit" class="form-control">Connexion</button>
+                 <input type="checkbox" name="_remember_me" value="on">
+             </div>
+        
+        <div class="form-group login">
+        <button class="btn btn-lg btn-primary btn-login" type="submit">Connexion</button>
         </div>
     </form>
     </div>

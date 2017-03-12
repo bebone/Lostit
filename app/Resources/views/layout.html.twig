@@ -1,6 +1,9 @@
 {#LAYOUT Principal - Contribux#}
 <!DOCTYPE html>
-<html>
+<!-- 
+Contribux, contribuons ensemble
+-->
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +37,7 @@
                         </button>
                         <a class="navbar-brand" href="/">Contribux</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
+                    <div class="collapse navbar-collapse" id="headMenu">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="/projets">LES PROJETS</a></li>
                             <li><a href="/rechercher">RECHERCHER</a></li>
@@ -72,37 +75,39 @@
 
         {% endblock %}
 
-
+        {# Message flash #######################}
         {% for type, flashMessages in app.session.flashbag.all() %}
             {% for flashMessage in flashMessages %}
-                <div class="panel panel-success message-flash">
+                <div class="panel panel-info message-flash">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ flashMessage }}</h3>
                     </div>
-                  
                 </div>
+
+
             {% endfor %}
         {% endfor %}
 
-        {# Contenu ###########("content" est un mot reservé -> utiliser "contenu" instead)###########}
+        {# Contenu ###########("content" est un mot reservé -> utiliser "contenu" )###########}
         {% block contenu %}
         {% endblock %}
 
 
         {# Pied de Page #######################}
         <footer>
+            
             <div class="row col-md-12" id="footer">
-
+<a href="https://github.com/bebone/contribux" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
                 <div class="col-md-offset-4 col-md-3">
                     <ul>
                         <li><a href="/mentions-legales">Mentions Légales</a></li>
-                        <li><a href="/qui-sommes-nous">À propos</a></li>
+                        <li><a href="/a-propos">À propos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <ul>
-                        <li><a href="/projets/1">Projets</a></li>
-                        <li><a href="">Rechercher</a></li>
+                        <li><a href="/projets">Projets</a></li>
+                        <li><a href="/rechercher">Rechercher</a></li>
                     </ul>
                 </div>
                 <div class="row col-md-12 footer text-center">
@@ -110,11 +115,13 @@
                 </div>
 
                 {% block footer %}
-                    {# au cas où ...#}
+                    {# au cas où pour ajouter du contenu...#}
                 {% endblock %}
             </div>
         </footer>
-
+        {% block scripts_footer %}
+            {# au cas où pour les scripts appelés en dernier ...#}
+        {% endblock %}
     </body>
 </html>
 

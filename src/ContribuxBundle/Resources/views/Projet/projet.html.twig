@@ -16,14 +16,23 @@
 
         <div class="projet-info">
             <h1>{{ projet.nom }}</h1>
-
+            <h4>Description</h4>
              <div class="projet-description">{{ projet.description| html }}</div>
-            <p>  {{ projet.categorie.nom }}</p>
-            <p>  {{ projet.langage.nom }}</p>
-            <p> {{ projet.user.username }}</p>
-            <p> {{ projet.dateCreation|date }}</p>
-            <p> {{ projet.site }}</p>
-            <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
+             <h4>Catégorie</h4>
+             <p> <strong> {{ projet.categorie.nom }}</strong></p>
+             <h4>Langage principal</h4>
+             <p> <strong>{{ projet.langage.nom }}</strong></p>  
+             <h4>Dernière modification </h4>
+            <p> <strong>le {{ projet.dateModif|date("d/m/Y à H:i") }}
+                    par <a href="/profile/{{ projet.user.username }}">{{ projet.user.username }}</a></strong></p>
+            <h4>Site internet du projet</h4>
+            {% if projet.site=="Non renseigné" %}
+                 <strong>Non renseigné</strong></p>
+                    {% else %}
+                        <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
+                    {% endif %}
+            <h4>Aide nécessaire  </h4>
+              <p>  {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
 
         </div>
     </div>

@@ -5,37 +5,32 @@
         <div class="user-info">
             <h1>{{ user.username }}</h1>
             {% if user == app.user %}
-                <button type="button" class="btn btn-info btn-modif" id="">
+                {# A venir dans une prochaine version : l'édition du profil#}
+                {#<button type="button" class="btn btn-info btn-modif" id="">
                     <span class="fa fa-pencil"></span> Modifier
-                </button>
+                </button>#}
             {% endif %}
             <h2> Bio</h2>
             {{ user.bio|html }}
             <h2>IRC</h2>
             <p>Serveur :
-                {% if user.ircNetwork is empty %}
-                Aucun</p>
-        {% else %}
-            {{ user.ircNetwork }}</p>
-            {% endif %}
+                {{ user.ircNetwork }}</p>
+
             <p>Pseudo :
-                {% if user.ircUsername is empty %}
-                Aucun</p>
-        {% else %}
-            {{ user.ircUsername }} </p>
-            {% endif %}
+
+                {{ user.ircUsername }} </p>
+
             <h2>Site web</h2>
-            {% if user.site == "http://" %}
+            {% if user.site =="Aucun" %}
                 Aucun
             {% else %}
-                <a href="{{ user.site }}">{{ user.site }}</a>
+                <a href="{{ user.site }}" target="_blank">{{ user.site }}</a>
             {% endif %}
-            {{ user.site }}
-            <h2><strong>{{ projets|length }}</strong> Projets ajoutés sur le site </h2>
+            <h2><strong>{{ projets|length }}</strong> Projet(s) ajouté(s) sur le site </h2>
             {% if projets is empty %}
                 <p>Aucun projet aujouté</p>
             {% else %}
-                {% for projet in projets %} {#TODO liste la globalité des projets sur la page #}
+                {% for projet in projets %} 
                     <h3><a href="/projet/{{ projet.id }}">{{ projet.nom }}</a></h3>
                     <p>Aujouté le {{ projet.dateCreation | date("d/m/Y à H:i") }} </p>
 

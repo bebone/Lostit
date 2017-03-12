@@ -120,7 +120,7 @@ class Projet {
     public function __construct() {
         $this->dateCreation = new \DateTime();
         $this->dateModif = new \DateTime();
-        $this->site = "http://"; //on indique déjà le http
+        $this->site = "http://"; //on indique déjà le http:// nécessaire pour l'affichage
     }
 
     /**
@@ -225,7 +225,11 @@ class Projet {
      * @return string
      */
     public function getSite() {
-        return $this->site;
+        if ($this->nom != "" && $this->site == "http://") { //Si aucun site renseigné
+            return "Non renseigné";
+        } else {
+            return $this->site;
+        }
     }
 
     /**
