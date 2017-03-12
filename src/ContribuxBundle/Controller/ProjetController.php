@@ -19,29 +19,21 @@ class ProjetController extends Controller {
      */
     public function projetsListAction() {
         $em = $this->getDoctrine()->getManager();
+        //récuperation des catégories pour l'affichage
         $categories = $em->getRepository('ContribuxBundle:Categorie')->findAll();
         return $this->render('ContribuxBundle:Projet:projetsList.html.twig', array('categories' => $categories));
     }
 
-    /**
-     *
-     * @Route("/projet/{id}", name="projet_view", requirements={"id": "\d+"})
-     *
-     */
-    public function projetViewAction($id) {
-        $em = $this->getDoctrine()->getManager();
-        $projet = $em->getRepository('ContribuxBundle:Projet')->find($id);
-        return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet' => $projet));
-    }
+
 
     /**
-     *
+     * Envoi des données HTML avec Ajax
      * @Route("/projets_ajax/{page}", name="projets_ajax")
      *
      */
     public function projetsAjaxAction($page) {
 
-        $nbParPage = 4; //TODO (10 en dur)
+        $nbParPage = 4; 
         $em = $this->getDoctrine()->getManager();
         $projets = $em->getRepository('ContribuxBundle:Projet')->getAllProjets($page, $nbParPage);
 
@@ -74,9 +66,10 @@ class ProjetController extends Controller {
      *
      */
     public function mesProjetsAjaxAction($page) {
-        $nbParPage = 4; //TODO (10 en dur)
+        $nbParPage = 4; 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser(); //On récupère l'utilisateur
+        //On récupere les projets de l'utilisateur via la methode getMyProjets()
         $projets = $em->getRepository('ContribuxBundle:Projet')->getMyProjets($page, $nbParPage, $user);
 
 
@@ -89,7 +82,26 @@ class ProjetController extends Controller {
 
         return $this->render('ContribuxBundle:Projet:projetsListAjax.html.twig', array('projets' => $projets, 'pagination' => $pagination));
     }
+    
+    
+    /************* C R U D **************/
+    
 
+    
+    /**
+     * Affichage d'un projet
+     * @Route("/projet/{id}", name="projet_view", requirements={"id": "\d+"})
+     *
+     */
+    public function projetViewAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $projet = $em->getRepository('ContribuxBundle:Projet')->find($id);
+        return $this->render('ContribuxBundle:Projet:projet.html.twig', array('projet' => $projet));
+    }
+    
+    
+    
+    
     /**
      *
      * @Route("/projet/create", name="projet_create")
@@ -104,11 +116,11 @@ class ProjetController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             if ($form["file"]->getData() != null) {
-                $projet->uploadProjetPicture();
+                $projet->uploadProjetPicture(); //On enregistre l'image dans le dossier /web/uploads
             }
             $projet->setUser($user);
             $em->persist($projet);
-            $em->flush();
+            $em->flush(); //Enregistrement
             $this->get('session')->getFlashBag()->add('info', "Le projet a bien été ajouté");
             return $this->redirect($this->generateUrl('mes_projets_list'));
         }
@@ -121,6 +133,7 @@ class ProjetController extends Controller {
         ));
     }
 
+    
     /**
      *
      * @Route("/projet/{id}/edit", name="projet_edit")
@@ -139,7 +152,7 @@ class ProjetController extends Controller {
             $editForm->handleRequest($request);
 
             if ($editForm->isValid()) {
-                $projet->setDateModif(new \DateTime()); //nouvelle date
+                $projet->setDateModif(new \DateTime()); //nouvelle date de modif
                 $em->flush();
                 $this->get('session')->getFlashBag()->add('info', "Le projet a bien été modifié.");
                 return $this->redirect($this->generateUrl('projet_view', array('id' => $id)));
@@ -153,6 +166,7 @@ class ProjetController extends Controller {
             return $this->render('UserBundle:Default:privileges.html.twig', array('error' => 403));
         }
     }
+    
 
     /**
      *

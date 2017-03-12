@@ -1,4 +1,4 @@
-# Lost it
+# Contribux
 =========
 
-Objets perdus ? 
+Utilisez Composer pour l'installation

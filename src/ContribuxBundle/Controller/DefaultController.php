@@ -12,7 +12,7 @@ class DefaultController extends Controller
 
 
     /**
-     *
+     * Page d'accueil
      * @Route("/", name="index")
      *
      */

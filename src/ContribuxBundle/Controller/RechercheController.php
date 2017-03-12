@@ -11,26 +11,28 @@ class RechercheController extends Controller
 {
 
     /**
-     *
+     * Affichage de la page RECHERCHER
      * @Route("/rechercher", name="rechercher")
      *
      */
     public function rechercheAction()
     {
         $em = $this->getDoctrine()->getManager();
+        // récupération de l'ensemble des langages
         $langages=$em->getRepository('ContribuxBundle:Langage')->findAll();
         return $this->render('ContribuxBundle:Recherche:rechercher.html.twig',array('langages'=>$langages));
     }
 
     /**
-     *
+     * Envoi des données HTML
      * @Route("/recherche_categorie_ajax/{id}/{page}", name="recherche_categorie_ajax")
      *
      */
     public function rechercheCategorieAjaxAction($id, $page) {
 
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage =4; //TODO écrire le paramètre ailleurs
         $em = $this->getDoctrine()->getManager();
+        // Requete de recherche selon la catégorie (son id)
         $projets=$em->getRepository('ContribuxBundle:Projet')->getCategorieProjets($id, $page,$nbParPage);
 
 
@@ -52,8 +54,9 @@ class RechercheController extends Controller
      */
     public function rechercheAideAjaxAction($type, $page) {
 
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage =4; 
         $em = $this->getDoctrine()->getManager();
+        // Requete de recherche selon le type d'aide (booleen)
         $projets=$em->getRepository('ContribuxBundle:Projet')->getAideProjets($type, $page,$nbParPage);
 
 
@@ -76,8 +79,9 @@ class RechercheController extends Controller
      */
     public function rechercheNomAjaxAction($nom, $page) {
 
-        $nbParPage =2; //TODO (10 en dur)
+        $nbParPage =4; 
         $em = $this->getDoctrine()->getManager();
+         // Requete de recherche selon le nom du projet
         $projets=$em->getRepository('ContribuxBundle:Projet')->getNomProjets($nom, $page,$nbParPage);
 
 
@@ -103,6 +107,7 @@ class RechercheController extends Controller
         $nbParPage =4; //indication dans le controller
         $em = $this->getDoctrine()->getManager();
         //Appel à la requete dans le repository
+         // Requete de recherche selon le langage
         $projets=$em->getRepository('ContribuxBundle:Projet')->getLangageProjets($id, $page,$nbParPage);
 
 
