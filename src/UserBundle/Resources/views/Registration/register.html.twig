@@ -1,0 +1,86 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+    {{parent()}} S'inscrire
+{% endblock %}
+
+
+{% block contenu %}
+
+    <div class="row content ">
+        <h1>Inscrivez vous sur Contribux </h1>
+
+        <form  action="{{ path('fos_user_registration_register') }}" method="POST" class="form-horizontal">
+
+            <div class="form-group {% if form_errors(form.email)|length >1 %} error{% endif %}">
+                <label for="username" class="col-md-4 control-label">Adresse e-mail : </label>
+                <div class="col-md-4">
+                {{ form_widget(form.email) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prenom" class="col-md-4 control-label">Nom d'utilisateur : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div>
+            <div class="form-group {% if form_errors(form.plainPassword.first)|length >1 %} error{% endif %}">
+                <label for="username" class="col-md-4 control-label">Mot de passe : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.plainPassword.first) }}
+                    <span class="help-inline">{{ form_errors(form.plainPassword.first) }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username" class="col-md-4 control-label">Confirmer votre mot de passe : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.plainPassword.second) }}
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="nom" class="col-md-4 control-label">Nom d'utilisateur IRC: </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.ircUsername) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="prenom" class="col-md-4 control-label">Serveur IRC : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.ircNetwork) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="statut" class="col-md-4 control-label">Biographie : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.bio) }}
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="datenaiss" class="col-md-4 control-label">Votre site internet : </label>
+                <div class="col-md-4">
+                    {{ form_widget(form.site) }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-5">
+                <button type="submit" class="btn btn-lg btn-primary btn-login">S'inscrire </button>
+            </div>
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
+
+{% endblock %}
+{% block scripts_footer %}
+    {{parent()}}
+    <script src="{{ asset('bundles/contribux/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('fos_user_registration_form[bio]');
+    </script>
+{% endblock %}

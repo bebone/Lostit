@@ -1,0 +1,21 @@
+{% extends "::layout.html.twig" %}
+{% block scripts %}
+
+{{ parent() }}
+    <script>
+        function Precedent() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}
+{% block contenu %}
+    <div class="row content">
+{%  if error==403 %}
+    Vous n'êtes pas autorisé à faire ça
+
+{%  else %}
+    Lol
+{%  endif %}
+        <button onclick="Precedent()">Retourner en arrière</button>
+    </div>
+{%  endblock %}

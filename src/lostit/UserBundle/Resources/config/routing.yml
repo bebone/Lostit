@@ -1,3 +1,0 @@
-lostit_user_homepage:
-    path:     /
-    defaults: { _controller: lostitUserBundle:Default:index }

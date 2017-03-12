@@ -1,0 +1,56 @@
+{% extends "::layout.html.twig" %}
+{% block scripts %}
+    {{ parent() }}
+   <script src="bundles/contribux/js/filtre.js"></script>
+{% endblock %}
+{% block contenu %}
+    <div class="row content">
+        <h1>Liste des projets</h1>
+        Par catégorie :
+        <p>
+            <button type="button" class="btn btn-info active btn-all">Toutes</button>
+            {% for categorie in categories %}
+
+                <button type="button" id="{{ categorie.id }}"
+                        class="btn btn-info btn-categorie">{{ categorie.nom }}</button>
+            {% endfor %}
+        </p>
+        Aide nécessaire :
+        <p>
+            <button type="button" class="btn btn-info active btn-all">Toutes</button>
+
+            <button type="button" class="btn btn-primary btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Développement" data-original-title="Développement" id="developpement">
+                <span class="fa fa-desktop"></span>
+            </button>
+
+
+            <button type="button" class="btn btn-info btn-aide" data-toggle="tooltip" data-placement="bottom" title="Traduction"
+                    data-original-title="Traduction" id="traduction">
+                <span class="fa fa-globe"></span>
+            </button>
+
+            <button type="button" class="btn btn-warning btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Documentation" data-original-title="Documentation" id="documentation">
+                <span class="fa fa-book"></span>
+            </button>
+
+
+            <button type="button" class="btn btn-success btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Graphisme" data-original-title="Graphisme" id="graphisme">
+                <span class="fa fa-paint-brush"></span>
+            </button>
+
+            <button type="button" class="btn btn-danger btn-aide" data-toggle="tooltip" data-placement="bottom"
+                    title="Tests" data-original-title="Graphisme" id="tests">
+                <span class="fa fa-cogs"></span>
+            </button>
+
+        </p>
+        <div id="target-content">
+            Veuillez patienter ...
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{%  extends "::layout.html.twig" %}
+{%block title %}
+    {{parent()}} À propos
+{% endblock%}
+
+{% block contenu %}
+    <div class="row content">
+        {% block titreOne %} <h1> À propos </h1>{%endblock%}
+        <div class="col-md-12">
+            <p> <ul>
+                <li>
+                    Se faire aider par des volontaires
+                </li>
+                <li>
+                    Découvrir de nouveaux projets
+                </li>
+                <li>
+                    Se découvrir de nouvelles compétences
+                </li>
+                <li>
+                    Mutualiser ensemble ses compétences
+                </li>
+                <li>
+                    Rencontrer
+                </li>
+                </p>
+        </div>
+    </div>
+
+
+{% endblock %}

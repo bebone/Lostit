@@ -1,4 +1,13 @@
+/* 
+Anaïs VIDAL
+Contribux
+CSS stylesheet
+*/
+
+
+/*IMPORTATION DES FONTS GNU GUEULE*/
 @import url('https://fonts.googleapis.com/css?family=Baumans|Open+Sans:300,400');
+/*******************/
 
 
 * {
@@ -14,17 +23,22 @@ body {
 body {
   min-height: 100%;
   margin: 0;
-  padding: 0px 0px 0px 0px;
-  background-color: #F1E7D6 !important;
-  color: #545352 !important;
-  font-family: 'Open Sans' !important;
+  background-color: #F1E7D6;
+  color: #545352;
+  font-family: 'Open Sans';
+}
+
+a {
+    color: #333;
 }
 
 a:hover {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
-ul {
+
+
+nav ul {
   list-style: none;
 }
 
@@ -33,15 +47,12 @@ nav a {
 
 }
 
-footer {
-  background-color: #e67e22;
-}
-
+/**** CLASSs *****/
 .navbar {
     margin-bottom: 0;
-    background-color: #424244 !important;
+    background-color: #535252 !important;
     border: 0;
-    font-size: 11px !important;
+    font-size: 13px !important;
     opacity:0.9;
     font-weight:bold;
 }
@@ -49,17 +60,18 @@ footer {
 .navbar-brand {
     font-family: 'Baumans';
     font-size: 40px !important;
-    color:#e67e22 !important;
+    color:#E67E22 !important;
 }
 
 
 .navbar li a, .navbar {
-    color: #d5d5d5 !important;
+
+    color: #E67E22 !important;
 }
 
 
 .navbar-nav li a:hover {
-    color: #fff !important;
+    color: #E67E22 !important;
 }
 
 
@@ -69,11 +81,38 @@ footer {
 }
 
 
-h1 {
-  padding-top: 70px;
-  /*border-style:solid;*/
+.row > .projet-liste {
+    padding: 10px 10px 10px 0px;
+    margin:10px 0px 0px 0px !important;
 }
 
+.projet-liste, .projet-info, .user-info {
+    background-color: #535252;
+    color:#FFF;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 2px 3px 5px #000;
+}
+
+.projet-info h1, .user-info h1 {
+    color:#E67E22;
+}
+
+.user-info h2 {
+    border-bottom: solid 1px;
+}
+
+
+.projet-liste a, .projet-info a, .user-info a {
+    color:#E67E22;
+}
+
+.projet-description {
+    padding-left:20px;
+}
+
+.projet-info h4 {
+    color: #E67E22;
+}
 
 .container {
     width: 100%;
@@ -81,10 +120,13 @@ h1 {
     margin:0;
 }
 
+.content:nth-child(2) {
+    padding-top: 75px;
+}
+
 .content {
     min-height: 100vh;
     margin: 0;
-    /*border-style:solid;*/
 }
 
 .row {
@@ -92,13 +134,20 @@ h1 {
   padding:15px;
 }
 
+.projet-img {
+    height: 200px;
+    width: 200px;
+    float:right;
+    border-radius: 5px;
+    border: 3px solid #E67E22;
+}
 
 
 .btn-accueil {
     font-weight: bold;
     padding : 10px 15px 10px 15px;
     border-radius: 50px;
-    background-color: #e67e22;
+    background-color: #E67E22;
     color: #545352;
     letter-spacing: 1px;
     font-size:1.6em;
@@ -110,25 +159,22 @@ h1 {
 
 .btn-accueil:hover {
     transition-duration: 1s;
-    background-color: #DA741A;
+    background-color: #E67E22;
     margin-top: 2px;
 
 }
 
-#titre-accueil, #boutons-accueil, #description-accueil {
-  text-align: center;
+
+
+.accueil {
+    background-color: #535252;
+    color:#FFF;
 }
 
-#titre-accueil {
-  font-weight: 300;
+.connected {
+    font-weight:800;
+    font-size: 20px;
 }
-
-#description-accueil {
-  margin-bottom: 20%;
-  font-size: 1.5em;
-}
-
-
 
 .animjs {visibility:hidden;}
 .animcss {
@@ -140,7 +186,90 @@ h1 {
     visibility: visible;
 }
 
+.message-flash {
+    margin-top:75px;
+}
 
+.carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: #f4511e;
+}
+
+.carousel-indicators li {
+    border-color: #E67E22;
+}
+
+.carousel-indicators li.active {
+    background-color: #E67E22;
+}
+
+.item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    
+    margin: 60px 0;
+}
+
+.apports {
+    margin-top: 5%;
+}
+
+.apports span {
+    font-size:60px; /*taille des icones*/
+}
+
+.apports h4 {
+    margin-bottom:50px;
+    color: #E67E22;
+}
+
+.form-login {
+    margin-top:50px;;
+}
+.btn-login {
+    margin-top: 25px;
+    background-color: #E67E22;
+    border-color: #E67E22;
+}
+
+.btn-login:hover {
+    background-color: #535252;
+}
+/**** IDs *****/
+#titre-accueil, #boutons-accueil, #description-accueil {
+  text-align: center;
+}
+
+#titre-accueil {
+  font-weight: 300;
+}
+
+#description-accueil {
+  margin-bottom: 10%;
+  font-size: 1.5em;
+}
+
+#btn-suppr  {
+    color:#FFF !important;
+}
+
+#footer {
+    background-color: #E67E22;
+    padding-bottom: 35px;
+}
+
+#footer ul {
+    list-style: none;
+}
+
+#footer a {
+    text-decoration: underline;
+}
+
+
+
+/* ANIMATIONS */
 @keyframes animcss {
     0% {
         opacity: 0;
@@ -160,3 +289,19 @@ h1 {
         opacity: 1;
         -webkit-transform: translateY(0%);
     }
+}
+
+/* OVERRIDE PAGINATION DE BOOTSTRAP */
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover
+{
+    background-color:#E67E22;
+    border-color:#E67E22;
+}
+
+/* OVERRIDE FORM CONTROL */
+
+.form-control:focus {
+    border-color: #E67E22;
+     webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(230, 126, 34, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(230, 126, 34, 0.6);
+}

@@ -1,0 +1,35 @@
+{%  extends "::layout.html.twig" %}
+{%block title %}
+    {{parent()}} Mentions Légales
+{% endblock%}
+
+{% block contenu %}
+    <div class="row content">
+        {% block titreOne %} <h1> Mentions Légales </h1>{%endblock%}
+        <div class="col-md-12">
+
+            <p>Conformément à l'art 6 de la loi du 21 juin 2004, pour la confiance dans l'économie numérique nous vous informons que ce service de communication au public en ligne est mis en place par :<br />
+                <br />
+                <ins><strong>Editeur </strong></ins><br />
+                <br />
+                Contribux<br />
+               Master CIM <br />
+
+                Téléphone : 06 66 23 21 05<br />
+                <br />
+                <br />
+                <ins><strong>Directeur de la publication et responsable du traitement des données </strong></ins><br />
+                <br />
+                Anaïs VIDAL<br />
+                anais.vidal@univ-lyon2.fr<br />
+                <br />
+                <ins><strong>Hébergeur </strong></ins><br />
+                <br />
+                Serveur chez OVH<br />
+                2 rue Kellermann<br />
+                Roubaix59053<br />
+                France<br />
+                Téléphone : 09 72 10 10 07</p>
+        </div>
+    </div>
+{% endblock %}

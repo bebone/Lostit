@@ -1,0 +1,3 @@
+contribux_user_homepage:
+    path:     /
+    defaults: { _controller: contribuxUserBundle:Default:index }

@@ -1,0 +1,43 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+   {{ parent() }} Rechercher
+    {% endblock %}
+{% block scripts %}
+    {{ parent() }}
+ <script src="bundles/contribux/js/rechercher.js"></script>
+{% endblock %}
+{% block contenu %}
+    <div class="row content">
+        <h1>Rechercher un projet</h1>
+        {# Catégorie dans un select !#}
+        <div class="row">
+            <div class="col-md-6">
+                Par son nom :
+            <div class="input-group">
+                <input type="text" id="recherche-nom" class="form-control" placeholder="Saisir ici...">
+                <span class="input-group-btn">
+        <button class="btn btn-default btn-nom" type="button">Rechercher !</button>
+      </span>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="form-group">
+            Par son langage de programmation :
+            <select class="form-control">
+                {% for langage in langages %}
+                    <option class="recherche-langage" id="{{ langage.id }}">{{ langage.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div id="target-content">
+            Choisissez votre méthode de recherche.
+            Les résultats vont apparaître ici.
+
+        </div>
+
+    </div>
+    </div>
+
+{% endblock %}

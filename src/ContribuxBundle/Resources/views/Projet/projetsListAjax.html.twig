@@ -1,0 +1,49 @@
+{% if projets is empty %}
+   <p> Aucun résultat ne correspond à votre recherche </p>
+
+{% else %}
+    {% for projet in projets %}
+        <div class="row projet-liste">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <h2><a href="{{ path('projet_view',{id:projet.id}) }}"> {{ projet.nom }}</a></h2>
+                    <p>Ajouté par : <a href="/profile/{{ projet.user.username }}">{{ projet.user.username }}</a>
+                        - le  {{ projet.dateCreation | date("d/m/Y à H:i") }}</p>
+                    <p>Langage principal :
+                        <button type="button" class="btn btn-default">
+                            {{ projet.langage.nom }}</button>
+                    </p>
+                    <p>Aide nécessaire : {% include 'ContribuxBundle:Default:aide.html.twig' %}</p>
+                    <p>Site web du projet :
+                        {% if projet.site=="Non renseigné" %}
+                        <strong>Non indiqué</strong></p>
+                    {% else %}
+                        <strong> <a href="{{ projet.site }}" target="_blank">{{ projet.site }}</a></strong></p>
+                    {% endif %}
+                    <p> Catégorie : <strong>{{ projet.categorie.nom }}</strong></p>
+                    {% if projet.user == app.user %}
+
+                   
+                         <a href="{{ path('projet_delete', {'id':projet.id}) }}" class="btn btn-danger"
+                               onclick="return confirm('Supprimer le projet ?')" id="btn-suppr">
+                               <span class="fa fa-trash"></span> Supprimer</a>
+
+                        <a href="{{ path("projet_edit",{'id': projet.id}) }}"><button type="button" class="btn btn-info btn-modif" id="">
+                            <span class="fa fa-pencil"></span> Modifier</button></a>
+
+                    {% endif %}
+                </div>
+                <div class="col-md-3">
+                    <img class="projet-img" src="{{ asset(projet.pictureName) }}">
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    {% include 'ContribuxBundle:Default:pagination.html.twig' %}
+{% endif %}
+
+
+
+
+

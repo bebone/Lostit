@@ -1,0 +1,42 @@
+{% extends "::layout.html.twig" %}
+
+{% block contenu %}
+    <div class="row content">
+        <div class="user-info">
+            <h1>{{ user.username }}</h1>
+            {% if user == app.user %}
+                {# A venir dans une prochaine version : l'édition du profil#}
+                {#<button type="button" class="btn btn-info btn-modif" id="">
+                    <span class="fa fa-pencil"></span> Modifier
+                </button>#}
+            {% endif %}
+            <h2> Bio</h2>
+            {{ user.bio|html }}
+            <h2>IRC</h2>
+            <p>Serveur :
+                {{ user.ircNetwork }}</p>
+
+            <p>Pseudo :
+
+                {{ user.ircUsername }} </p>
+
+            <h2>Site web</h2>
+            {% if user.site =="Aucun" %}
+                Aucun
+            {% else %}
+                <a href="{{ user.site }}" target="_blank">{{ user.site }}</a>
+            {% endif %}
+            <h2><strong>{{ projets|length }}</strong> Projet(s) ajouté(s) sur le site </h2>
+            {% if projets is empty %}
+                <p>Aucun projet aujouté</p>
+            {% else %}
+                {% for projet in projets %} 
+                    <h3><a href="/projet/{{ projet.id }}">{{ projet.nom }}</a></h3>
+                    <p>Aujouté le {{ projet.dateCreation | date("d/m/Y à H:i") }} </p>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

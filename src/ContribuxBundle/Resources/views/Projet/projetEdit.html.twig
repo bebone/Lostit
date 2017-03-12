@@ -1,0 +1,66 @@
+{% extends "::layout.html.twig" %}
+{% block title %}
+    {{ parent() }}  Modifier un projet
+{% endblock %}
+
+{% block contenu %}
+
+    <div class="row content">
+
+        <h1>Modifier un projet logiciel sur le site</h1>
+
+        <form action="{{ path("projet_edit", { 'id': projet.id })}}" method="post" enctype="multipart/form-data">
+
+
+            <fieldset>
+
+                <div class="form-group">
+                    {{ form_errors(form.nom) }}
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.description) }}
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_errors(form.file) }}
+                    {{ form_label(form.file) }}
+                    {{ form_widget(form.file) }}
+                    Taille maximum (500x500 px)
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.site) }}
+                    {{ form_label(form.site) }}
+                    {{ form_widget(form.site) }}
+                </div>
+                <div class="form-group">
+                    {{ form_errors(form.categorie) }}
+                    {{ form_label(form.categorie) }}
+                    {{ form_widget(form.categorie) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_errors(form.langage) }}
+                    {{ form_label(form.langage) }}
+                    {{ form_widget(form.langage) }}
+                </div>
+
+
+                {{ form_rest(form) }}
+                <div class="form-group">
+                    <input type="submit" id="submit" value="VALIDER" name="submit" class="btn btn-default"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}
+{% block scripts_footer %}
+    {{parent()}}
+    <script src="{{ asset('bundles/contribux/ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace('projet_create[description]');
+    </script>
+{%endblock%}
